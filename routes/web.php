@@ -26,6 +26,7 @@ Route::controller(UserController::class)->group(function () {
     ],function(){
         Route::get('/', 'index')->name('user.index');
         Route::get('/create', 'create')->name('user.create');
+        Route::post('/store', 'store')->name('user.store');
     });
 });
 
