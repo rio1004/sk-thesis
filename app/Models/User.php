@@ -27,6 +27,7 @@ class User extends Authenticatable
         'brgy',
         'email',
         'password',
+        'default_password',
     ];
 
     /**

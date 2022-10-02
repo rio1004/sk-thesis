@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::get();
+        $users = User::role('admin')->get();
         return view('pages.user.index', compact('users'));
     }
 
@@ -32,7 +32,8 @@ class UserController extends Controller
             'gender' => $validated['gender'],
             'email' => $validated['email'],
             'brgy' => $validated['brgy'],
-            'password' => Hash::make($password)
+            'default_password' => $password,
+            'password' => Hash::make($password),
         ])->assignRole('admin');
 
         return redirect()->back()->with('success-message', 'User created Successfully');

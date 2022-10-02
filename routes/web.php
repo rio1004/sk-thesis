@@ -20,14 +20,20 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::controller(UserController::class)->group(function () {
-    Route::group([
-        'prefix' => 'user'
-    ],function(){
-        Route::get('/', 'index')->name('user.index');
-        Route::get('/create', 'create')->name('user.create');
-        Route::post('/store', 'store')->name('user.store');
+
+Route::group(['middleware' => ['role:super-admin']], function () {
+    Route::controller(UserController::class)->group(function () {
+        Route::group([
+            'prefix' => 'user'
+        ],function(){
+            Route::get('/', 'index')->name('user.index');
+            Route::get('/create', 'create')->name('user.create');
+            Route::post('/store', 'store')->name('user.store');
+        });
     });
+});
+Route::group(['middleware' => ['role:admin']], function () {
+
 });
 
 require __DIR__.'/auth.php';
