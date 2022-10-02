@@ -64,7 +64,7 @@
                 </a>
             </li>
             <li class="nav-main-item">
-                <a class="nav-main-link" href="be_pages_dashboard.html">
+                <a class="nav-main-link" href="{{route('user.index')}}">
                     <i class="nav-main-link-icon si si-user-follow"></i>
                     <span class="nav-main-link-name">User</span>
                 </a>
