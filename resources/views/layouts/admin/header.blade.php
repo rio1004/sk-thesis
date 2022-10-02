@@ -16,9 +16,16 @@
                         <p class="mb-0 text-white-50 font-size-sm">SK-Chairman</p>
                     </div>
                     <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_signin.html">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="route('logout')"
+                        onclick="event.preventDefault();
+                        this.closest('form').submit();"
+                        >
                             <span class="font-size-sm font-w500">Log Out</span>
                         </a>
+                    </form>
+
                     </div>
                 </div>
             </div>
