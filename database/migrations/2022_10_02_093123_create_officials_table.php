@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('officials', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('middle_name');
+            $table->string('age');
+            $table->string('gender');
+            $table->string('position')->nullable();
+		    $table->string('other_position')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

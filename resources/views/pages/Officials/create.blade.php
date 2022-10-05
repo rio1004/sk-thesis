@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('page-name')
-    Create User
+    Officials
 @endsection
 @section('content')
-<form action="{{route('user.store')}}" method="POST">
+<form action="{{route('official.store')}}" method="POST">
     @csrf
     <x-alert></x-alert>
-
+    <x-error></x-error>
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Create user</h3>
+            <h3 class="block-title">Create Official</h3>
             <div class="block-header">
-                <a class="btn btn-sm btn-alt-success" href="{{route('user.index')}}">
+                <a class="btn btn-sm btn-alt-success" href="{{route('official.index')}}">
                     Cancel
                 </a>
             </div>
@@ -44,15 +44,20 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="block-form1-password">Email</label>
-                        <input type="email" class="form-control form-control-alt" id="block-form1-password" name="email" placeholder="Enter your Email..">
+                        <label for="example-select">Position</label>
+                        <select class="form-control" id="example-select" name="position">
+                            <option value="">Please select</option>
+                            @foreach ($positions as $pos)
+                                <option value="{{$pos}}">{{$pos}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="example-select">Barangay</label>
-                        <select class="form-control" id="example-select" name="brgy">
+                        <label for="example-select">Other Position</label>
+                        <select class="form-control" id="example-select" name="other_position">
                             <option value="">Please select</option>
-                            @foreach ($barangays as $brgy)
-                                <option value="{{$brgy}}">{{$brgy}}</option>
+                            @foreach ($otherPos as $pos)
+                                <option value="{{$pos}}">{{$pos}}</option>
                             @endforeach
                         </select>
                     </div>

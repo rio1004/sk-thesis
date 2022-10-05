@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Official\StoreRequest;
 use App\Models\Official;
+use App\Services\Constant;
 use Illuminate\Http\Request;
 
 class OfficialController extends Controller
@@ -14,7 +16,8 @@ class OfficialController extends Controller
      */
     public function index()
     {
-        //
+        $officials = Official::get();
+        return view('pages.Officials.index', compact('officials'));
     }
 
     /**
@@ -24,7 +27,11 @@ class OfficialController extends Controller
      */
     public function create()
     {
-        //
+        $positions = Constant::getPositions();
+        $otherPos = Constant::getOtherPositions();
+
+        return view('pages.Officials.create', compact('positions', 'otherPos'));
+
     }
 
     /**
@@ -33,9 +40,13 @@ class OfficialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        Official::create($validated);
+
+        return redirect()->back()->with('success-message', 'Official has been Created Successfully');
     }
 
     /**
@@ -57,7 +68,9 @@ class OfficialController extends Controller
      */
     public function edit(Official $official)
     {
-        //
+        $positions = Constant::getPositions();
+        $otherPos = Constant::getOtherPositions();
+        return view('pages.Officials.edit', compact('official','positions', 'otherPos'));
     }
 
     /**
@@ -67,9 +80,12 @@ class OfficialController extends Controller
      * @param  \App\Models\Official  $official
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Official $official)
+    public function update(StoreRequest $request, Official $official)
     {
-        //
+        $validated = $request->validated();
+        $official->update($validated);
+
+        return redirect()->back()->with('success-message', 'Official has been Created Successfully');
     }
 
     /**

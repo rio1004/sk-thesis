@@ -5,10 +5,10 @@
 @section('content')
 <div class="block block-rounded">
     <div class="block-header">
-        <h3 class="block-title">List of Users</h3>
+        <h3 class="block-title">List of Officials</h3>
         <div class="block-options">
-            <a type="button" class="btn btn-sm btn-alt-primary" href="{{route('user.create')}}">
-                <i class="fa fa-user-plus mr-1"></i> Add User
+            <a type="button" class="btn btn-sm btn-alt-primary" href="{{route('official.create')}}">
+                <i class="fa fa-user-plus mr-1"></i> Add Official
             </a>
         </div>
     </div>
@@ -20,31 +20,32 @@
                         <th>Name</th>
                         <th>Age</th>
                         <th>Gender</th>
-                        <th>Email</th>
-                        <th>Default Password</th>
-                        <th>Barangay</th>
+                        <th>Position</th>
+                        <th>Other Position</th>
+                        {{-- <th>Barangay</th> --}}
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($users as $user)
+                    @forelse ($officials as $official)
                     <tr>
                         <td class="font-w600 font-size-sm">
-                          {{$user->full_name}}
+                          {{$official->full_name}}
                         </td>
                         <td class="font-w600 font-size-sm">
-                            {{$user->age}}
+                            {{$official->age}}
                         </td>
                         <td class="font-w600 font-size-sm">
-                           {{$user->gender}}
+                           {{$official->gender}}
                         </td>
-                        <td class="font-size-sm">{{$user->email}}</td>
-                        <td class="font-size-sm">{{$user->default_password}}</td>
-                        <td>
-                            <span class="badge badge-primary">{{$user->brgy}}</span>
+                        <td class="font-w600 font-size-sm">
+                           {{$official->position}}
+                        </td>
+                        <td class="font-w600 font-size-sm">
+                           {{$official->other_position}}
                         </td>
                         <td class="text-center">
-                            @livewire('user.user', ['user' => $user], key($user->id))
+                            @livewire('official.official', ['official' => $official], key($official->id))
                         </td>
                     </tr>
                     @empty
