@@ -16,7 +16,7 @@
                 </a>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="be_comp_loaders.html">
+                        <a class="nav-main-link" href="{{route('purchase-request.index')}}">
                             <span class="nav-main-link-name">Purchase Request</span>
                         </a>
                     </li>

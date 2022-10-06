@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OfficialController;
+use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::group(['middleware' => ['role:super-admin']], function () {
 });
 Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('official', OfficialController::class);
+    Route::resource('purchase-request', PurchaseRequestController::class);
 });
 
 require __DIR__.'/auth.php';

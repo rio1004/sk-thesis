@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Official;
 use App\Models\PurchaseRequest;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class PurchaseRequestController extends Controller
      */
     public function index()
     {
-        //
+        $purchaseRequests = PurchaseRequest::get();
+        return view('pages.PurchaseRequest.index', compact('purchaseRequests'));
     }
 
     /**
@@ -24,7 +26,9 @@ class PurchaseRequestController extends Controller
      */
     public function create()
     {
-        //
+        $officials = Official::get();
+        return view('pages.PurchaseRequest.create', compact('officials'));
+
     }
 
     /**
