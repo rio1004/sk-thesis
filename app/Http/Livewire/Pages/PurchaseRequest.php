@@ -71,11 +71,11 @@ class PurchaseRequest extends Component
                 $templateProcessor->setValue('unit#' . ($key + 1), $item->unit);
                 $templateProcessor->setValue('item_desc#' . ($key + 1), $item->item);
                 $templateProcessor->setValue('est_cost#' . ($key + 1), $item->estimated_unit_cost);
-                $templateProcessor->setValue('est_amount#' . ($key + 1), $item->estimated_unit_cost * $item->qty);
+                $templateProcessor->setValue('est_amount#' . ($key + 1), $item->estimated_amount);
             }
         }
 
-        $filename = 'purchase-request-' . date('Y-m-d-h-i-s-a');
+        $filename = 'PurchaseRequest' . date('Y-m-d-h-i-s-a');
         $tempPath = 'reports/' . $filename . '.docx';
 
         $templateProcessor->saveAs($tempPath);
