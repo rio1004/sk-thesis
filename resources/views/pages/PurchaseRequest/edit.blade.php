@@ -1,10 +1,12 @@
+
 @extends('layouts.app')
 @section('page-name')
     Officials
 @endsection
 @section('content')
-<form action="{{route('official.store')}}" method="POST">
+<form action="{{route('official.update', [$official])}}" method="POST">
     @csrf
+    @method('PUT')
     <x-alert></x-alert>
     <x-error></x-error>
     <div class="block block-rounded">
@@ -21,26 +23,26 @@
                 <div class="col-sm-10 col-md-8">
                     <div class="form-group">
                         <label for="block-form1-username">First Name</label>
-                        <input type="text" class="form-control  " id="block-form1-username" name="first_name" placeholder="Enter your First Name..">
+                        <input type="text" class="form-control form-control-alt" id="block-form1-username" name="first_name" placeholder="Enter your First Name.." value="{{$official->first_name}}">
                     </div>
                     <div class="form-group">
                         <label for="block-form1-username">Middle Name</label>
-                        <input type="text" class="form-control  " id="block-form1-username" name="middle_name" placeholder="Enter your Middle Name..">
+                        <input type="text" class="form-control form-control-alt" id="block-form1-username" name="middle_name" placeholder="Enter your Middle Name.." value="{{$official->middle_name}}">
                     </div>
                     <div class="form-group">
                         <label for="block-form1-username">Last Name</label>
-                        <input type="text" class="form-control  " id="block-form1-username" name="last_name" placeholder="Enter your Last Name..">
+                        <input type="text" class="form-control form-control-alt" id="block-form1-username" name="last_name" placeholder="Enter your Last Name.." value="{{$official->last_name}}">
                     </div>
                     <div class="form-group">
                         <label for="block-form1-username">Age</label>
-                        <input type="number" class="form-control  " id="block-form1-username" name="age" placeholder="Enter your Age..">
+                        <input type="number" class="form-control form-control-alt" id="block-form1-username" name="age" placeholder="Enter your Age.." value="{{$official->age}}">
                     </div>
                     <div class="form-group">
                         <label for="example-select">Gender</label>
                         <select class="form-control" id="example-select" name="gender">
                             <option value="">Please select</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option value="Male" @selected($official->gender == 'Male')>Male</option>
+                            <option value="Female"@selected($official->gender == 'Female')>Female</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -48,8 +50,8 @@
                         <select class="form-control" id="example-select" name="position">
                             <option value="">Please select</option>
                             @foreach ($positions as $pos)
-                                <option value="{{$pos}}">{{$pos}}</option>
-                            @endforeach
+                            <option value="{{$pos}}" @selected($official->position == $pos)>{{$pos}}</option>
+                        @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -57,7 +59,7 @@
                         <select class="form-control" id="example-select" name="other_position">
                             <option value="">Please select</option>
                             @foreach ($otherPos as $pos)
-                                <option value="{{$pos}}">{{$pos}}</option>
+                                <option value="{{$pos}}"@selected($official->other_position == $pos)>{{$pos}}</option>
                             @endforeach
                         </select>
                     </div>

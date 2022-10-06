@@ -4,6 +4,8 @@ namespace App\Services;
 
 class Constant
 {
+    public const TEMPLATE_PATH_PR = 'docs/pr_template.docx';
+
 
     public static function getBarangays()
     {

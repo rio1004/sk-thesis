@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('purchase_requests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('requested_by_id')->nullable()->references('id')->on('officials')->nullOnDelete();
+            $table->string('pr_no')->nullable();
+            $table->date('pr_date')->nullable();
+            $table->double('total_amount')->default(0);
+            $table->string('purpose')->nullable();
             $table->timestamps();
         });
     }
