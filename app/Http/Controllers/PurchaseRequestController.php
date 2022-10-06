@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseRequest\StoreRequest;
+use App\Http\Requests\PurchaseRequest\UpdateRequest;
 use App\Models\Official;
 use App\Models\PurchaseRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class PurchaseRequestController extends Controller
 {
@@ -60,6 +62,7 @@ class PurchaseRequestController extends Controller
                 'item' => $validated['items'][$key],
                 'unit' => $validated['units'][$key],
                 'estimated_unit_cost' => $validated['unitCosts'][$key],
+                'estimated_amount' =>  $validated['unitCosts'][$key] * $validated['qtys'][$key],
                 'qty' => $validated['qtys'][$key],
             ]);
         }
@@ -86,7 +89,8 @@ class PurchaseRequestController extends Controller
      */
     public function edit(PurchaseRequest $purchaseRequest)
     {
-        //
+        $officials = Official::get();
+        return view('pages.PurchaseRequest.edit', compact('officials', 'purchaseRequest'));
     }
 
     /**
@@ -96,9 +100,40 @@ class PurchaseRequestController extends Controller
      * @param  \App\Models\PurchaseRequest  $purchaseRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PurchaseRequest $purchaseRequest)
+    public function update(UpdateRequest $request, PurchaseRequest $purchaseRequest)
     {
-        //
+        $validated = $request->validated();
+        $purchaseRequest->update(Arr::only($validated, ['pr_no', 'pr_date', 'purpose', 'requested_by_id']));
+        // get the existing items
+        $prItems = $purchaseRequest->purchaseRequestItem()->pluck('id');
+        $deletedIds = $prItems->diff($validated['prItemId'])->toArray();
+        if ($deletedIds) {
+            $purchaseRequest->purchaseRequestItem()->whereIn('id', $deletedIds)->delete();
+        }
+        foreach ($validated['prItemId'] as $key => $prItem) {
+            if (!$prItem) {
+                $purchaseRequest->purchaseRequestItem()->create([
+                    'item_no' => $key + 1,
+                    'item' => $validated['items'][$key],
+                    'unit' => $validated['units'][$key],
+                    'estimated_unit_cost' => $validated['unitCosts'][$key],
+                    'qty' => $validated['qtys'][$key],
+                    'estimated_amount' => $validated['qtys'][$key] * $validated['unitCosts'][$key],
+                ]);
+            } else {
+                $purchaseRequest->purchaseRequestItem()
+                    ->where('id', $prItem)
+                    ->update([
+                        'item_no' => $key + 1,
+                        'item' => $validated['items'][$key],
+                        'unit' => $validated['units'][$key],
+                        'estimated_unit_cost' => $validated['unitCosts'][$key],
+                        'qty' => $validated['qtys'][$key],
+                        'estimated_amount' => $validated['qtys'][$key] * $validated['unitCosts'][$key],
+                    ]);
+            }
+        }
+        return back()->with('success-message','Purchase request has been updated.');
     }
 
     /**

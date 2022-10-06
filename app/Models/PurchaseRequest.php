@@ -12,7 +12,7 @@ class PurchaseRequest extends Model
     use HasFactory, Tenancy,HasRequestedBy;
 
     protected $guarded = [];
-
+    protected $dates = ['pr_date'];
     public function purchaseRequestItem()
     {
         return $this->hasMany(PurchaseRequestItem::class);
