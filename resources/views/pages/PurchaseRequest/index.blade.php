@@ -21,8 +21,6 @@
                         <th>PR No.</th>
                         <th>Requested by</th>
                         <th>Total Amount</th>
-                        <th>Actions</th>
-                        {{-- <th>Barangay</th> --}}
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                 </thead>
@@ -30,7 +28,7 @@
                     @forelse ($purchaseRequests as $purchaseRequest)
                     <tr>
                         <td class="font-w600 font-size-sm">
-                          {{$purchaseRequest->pr_date->format('M. d, Y')}}
+                          {{$purchaseRequest->pr_date}}
                         </td>
                         <td class="font-w600 font-size-sm">
                             {{$purchaseRequest->pr_no}}

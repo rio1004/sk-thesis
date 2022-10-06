@@ -3,7 +3,7 @@
     Purchase Request
 @endsection
 @section('content')
-<form action="{{route('official.store')}}" method="POST">
+<form action="{{route('purchase-request.store')}}" method="POST">
     @csrf
     <x-alert></x-alert>
     <x-error></x-error>
@@ -11,7 +11,7 @@
         <div class="block-header block-header-default">
             <h3 class="block-title">Create Purchase Request</h3>
             <div class="block-header">
-                <a class="btn btn-sm btn-alt-success" href="{{route('official.index')}}">
+                <a class="btn btn-sm btn-alt-success" href="{{route('purchase-request.index')}}">
                     Cancel
                 </a>
             </div>
@@ -64,16 +64,16 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label for="block-form1-username">Unit</label>
-                    <input type="date" class="form-control" id="block-form1-username" name="units[]" value="{{old('units.0')}}" placeholder="Enter Unit Name">
+                    <input type="text" class="form-control" id="block-form1-username" name="units[]" value="{{old('units.0')}}" placeholder="Enter Unit Name">
                 </div>
                 <div class="form-group col-md-2">
                     <label for="block-form1-username">Quantity</label>
-                    <input type="text" class="form-control" id="block-form1-username" name="qtys[]" value="{{old('qtys.0')}}" placeholder="Enter quantity">
+                    <input type="number" class="form-control" id="block-form1-username" name="qtys[]" value="{{old('qtys.0')}}" placeholder="Enter quantity">
                 </div>
                 <div class="form-group col-md-2">
                     <label for="block-form1-username">Unit Cost</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="block-form1-username" name="unitCosts[]" value="{{old('unitCosts.0')}}" placeholder="Enter unit cost">
+                        <input type="number" class="form-control" id="block-form1-username" name="unitCosts[]" value="{{old('unitCosts.0')}}" placeholder="Enter unit cost">
                         <div class="input-group-append d-none" data-item-hide>
                             <button type="button" class="btn btn-danger " data-remove-item>
                                 <i class="far fa-trash-alt"></i>
@@ -83,7 +83,17 @@
                 </div>
 
             </div>
+
         </div>
+
+    </div>
+    <div class="form-group ml-4">
+        <button type="submit" class="btn btn-sm btn-primary">
+            Submit
+        </button>
+        <button type="reset" class="btn btn-sm btn-alt-primary">
+            Reset
+        </button>
     </div>
 </form>
 @endsection
