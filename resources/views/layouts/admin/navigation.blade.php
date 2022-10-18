@@ -59,6 +59,12 @@
                 </a>
             </li>
             <li class="nav-main-item">
+                <a class="nav-main-link" href="{{route('suppliers.index')}}">
+                    <i class="nav-main-link-icon si si-users"></i>
+                    <span class="nav-main-link-name">Suppliers</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
                 <a class="nav-main-link" href="be_pages_dashboard.html">
                     <i class="nav-main-link-icon si si-wallet"></i>
                     <span class="nav-main-link-name">Budget</span>
