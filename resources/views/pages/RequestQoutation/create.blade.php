@@ -3,7 +3,7 @@
     Purchase Request
 @endsection
 @section('content')
-<form action="{{route('purchase-request.store')}}" method="POST">
+<form action="{{route('qoutation.store')}}" method="POST">
     @csrf
     <x-alert></x-alert>
     <x-error></x-error>
@@ -20,23 +20,28 @@
             <div class="row justify-content-center py-sm-3 py-md-5">
                 <div class="col-sm-10 col-md-8">
                     <div class="form-group">
-                        <label for="block-form1-username">Purchase Request No.</label>
-                        <input type="text" class="form-control " id="block-form1-username" name="pr_no" value="{{old('pr_no')}}" placeholder="Enter pr no.">
+                        <label for="block-form1-username">Qoutation No.</label>
+                        <input type="text" class="form-control " id="block-form1-username" name="qoutation_no" value="{{old('qoutation_no')}}" placeholder="Enter pr no.">
                     </div>
                     <div class="form-group">
                         <label for="block-form1-username">Date</label>
-                        <input type="date" class="form-control " id="block-form1-username" name="pr_date" value="{{old('pr_date')}}">
+                        <input type="date" class="form-control " id="block-form1-username" name="date" value="{{old('date')}}">
                     </div>
                     <div class="form-group">
-                        <label for="block-form1-username">Purpose</label>
-                        <input type="text" class="form-control " id="block-form1-username" name="purpose" value="{{old('purpose')}}" placeholder="Enter purpose">
-                    </div>
-                    <div class="form-group">
-                        <label for="example-select">Requested By:</label>
-                        <select class="form-control" id="example-select" name="requested_by_id">
+                        <label for="example-select">Procurement Officer:</label>
+                        <select class="form-control" id="example-select" name="procurement_ofcr_id">
                             <option value="">Please select</option>
                             @foreach($officials as $official)
                                 <option value="{{ $official->id }}">{{ $official->full_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="example-select">Supplier:</label>
+                        <select class="form-control" id="example-select" name="supplier_id">
+                            <option value="">Please select</option>
+                            @foreach($suppliers as $supplier)
+                                <option value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -68,32 +73,26 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label for="block-form1-username">Quantity</label>
-                    <input type="number" class="form-control" id="block-form1-username" name="qtys[]" value="{{old('qtys.0')}}" placeholder="Enter quantity">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="block-form1-username">Unit Cost</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="block-form1-username" name="unitCosts[]" value="{{old('unitCosts.0')}}" placeholder="Enter unit cost">
-                        <div class="input-group-append d-none" data-item-hide>
+                        <input type="number" class="form-control" id="block-form1-username" name="qtys[]" value="{{old('qtys.0')}}" placeholder="Enter quantity">
+                        <div class="input-group-appen d-none" data-item-hide="">
                             <button type="button" class="btn btn-danger " data-remove-item>
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
+        <div class="form-group pl-5 pb-3">
+            <button type="submit" class="btn btn-sm btn-primary">
+                Submit
+            </button>
+            <button type="reset" class="btn btn-sm btn-alt-primary">
+                Reset
+            </button>
+        </div>
+    </div>
 
-    </div>
-    <div class="form-group ml-4">
-        <button type="submit" class="btn btn-sm btn-primary">
-            Submit
-        </button>
-        <button type="reset" class="btn btn-sm btn-alt-primary">
-            Reset
-        </button>
-    </div>
 </form>
 @endsection

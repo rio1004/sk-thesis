@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="be_comp_image_cropper.html">
+                        <a class="nav-main-link" href="{{route('qoutation.index')}}">
                             <span class="nav-main-link-name">Request for Qoutation</span>
                         </a>
                     </li>

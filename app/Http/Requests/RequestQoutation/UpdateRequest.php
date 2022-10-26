@@ -4,7 +4,7 @@ namespace App\Http\Requests\RequestQoutation;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,6 +28,8 @@ class StoreRequest extends FormRequest
             "date" => ['required'],
             "procurement_ofcr_id" => ['required'],
             "supplier_id" => ['required'],
+            'rqId' => ['nullable', 'array'],
+            'rqId.*' => ['nullable', 'exists:request_qoutation_items,id'],
             "items.*" => ['required'],
             "items" => ['required','array'],
             "units.*" => ['required'],
