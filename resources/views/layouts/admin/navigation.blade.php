@@ -21,6 +21,11 @@
                         </a>
                     </li>
                     <li class="nav-main-item">
+                        <a class="nav-main-link" href="{{route('purchase-order.index')}}">
+                            <span class="nav-main-link-name">Purchase Order</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
                         <a class="nav-main-link" href="{{route('qoutation.index')}}">
                             <span class="nav-main-link-name">Request for Qoutation</span>
                         </a>

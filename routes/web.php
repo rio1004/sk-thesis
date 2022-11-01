@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CanvassController;
 use App\Http\Controllers\OfficialController;
+use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\RequestQoutationController;
@@ -40,6 +42,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('purchase-request', PurchaseRequestController::class);
     Route::resource('suppliers', SupplierController::class);
     Route::resource('qoutation', RequestQoutationController::class);
+    Route::resource('purchase-order', PurchaseOrderController::class);
+    Route::resource('abstract-canvass', CanvassController::class);
 });
 
 require __DIR__.'/auth.php';
