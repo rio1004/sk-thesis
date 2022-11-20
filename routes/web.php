@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AbcController;
 use App\Http\Controllers\CanvassController;
+use App\Http\Controllers\NoaController;
+use App\Http\Controllers\NtpController;
 use App\Http\Controllers\OfficialController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseRequestController;
@@ -44,6 +47,9 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('qoutation', RequestQoutationController::class);
     Route::resource('purchase-order', PurchaseOrderController::class);
     Route::resource('abstract-canvass', CanvassController::class);
+    Route::resource('abc', AbcController::class);
+    Route::resource('notice-of-award', NoaController::class);
+    Route::resource('notice-to-proceed', NtpController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -1,5 +1,5 @@
 <div class="btn-group">
-    <a href="{{route('abstract-canvass.edit', $canvass)}}" class="btn btn-sm btn-alt-success"  data-toggle="tooltip" title="Edit">
+    <a href="{{route('notice-of-award.edit', $noa)}}" class="btn btn-sm btn-alt-success"  data-toggle="tooltip" title="Edit">
         <i class="fa fa-fw fa-pencil-alt"></i>
     </a>
     <button type="button" class="btn btn-sm btn-alt-info" data-toggle="tooltip" title="Export" wire:click="export" wire:loading.attr="disabled">

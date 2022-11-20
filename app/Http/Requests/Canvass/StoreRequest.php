@@ -13,7 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,23 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "project_name" => ["required"],
+            "first_supplier" => ["required", "different:second_supplier", "different:third_supplier"],
+            "second_supplier" => ["required", "different:first_supplier", "different:third_supplier"],
+            "third_supplier" => ["required", "different:second_supplier", "different:first_supplier"],
+            "radios5" => ["required"],
+            "items.*" => ['required'],
+            "items" => ['required', 'array'],
+            "units.*" => ['required'],
+            "units" => ['required', 'array'],
+            "qtys.*" => ['required'],
+            "qtys" => ['required', 'array'],
+            "f_suppliers.*" => ['nullable'],
+            "f_suppliers" => ['nullable', 'array'],
+            "s_suppliers" => ['nullable', 'array'],
+            "s_suppliers.*" => ['nullable'],
+            "t_suppliers" => ['nullable', 'array'],
+            "t_suppliers.*" => ['nullable'],
         ];
     }
 }
