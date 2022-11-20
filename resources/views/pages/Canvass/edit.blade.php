@@ -11,7 +11,7 @@
         <div class="block-header block-header-default">
             <h3 class="block-title">Create Purchase Request</h3>
             <div class="block-header">
-                <a class="btn btn-sm btn-alt-success" href="{{route('purchase-request.index')}}">
+                <a class="btn btn-sm btn-alt-success" href="{{route('abstract-canvass.index')}}">
                     Cancel
                 </a>
             </div>

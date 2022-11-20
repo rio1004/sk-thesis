@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('page-name')
-    Purchase Request
+Request for Qoutation
 @endsection
 @section('content')
 <form action="{{route('qoutation.store')}}" method="POST">
@@ -9,9 +9,9 @@
     <x-error></x-error>
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Create Purchase Request</h3>
+            <h3 class="block-title">Create Request for Qoutation</h3>
             <div class="block-header">
-                <a class="btn btn-sm btn-alt-success" href="{{route('purchase-request.index')}}">
+                <a class="btn btn-sm btn-alt-success" href="{{route('qoutation.index')}}">
                     Cancel
                 </a>
             </div>
