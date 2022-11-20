@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('page-name')
-    Officials
+    Purchase Request
 @endsection
 @section('content')
 <div class="block block-rounded">
