@@ -70,6 +70,12 @@
                 </a>
             </li>
             <li class="nav-main-item">
+                <a class="nav-main-link" href="{{route('announcement.index')}}">
+                    <i class="nav-main-link-icon fa fa-bullhorn"></i>
+                    <span class="nav-main-link-name">Announcement</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
                 <a class="nav-main-link" href="be_pages_dashboard.html">
                     <i class="nav-main-link-icon si si-wallet"></i>
                     <span class="nav-main-link-name">Budget</span>

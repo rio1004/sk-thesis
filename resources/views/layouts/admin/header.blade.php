@@ -16,6 +16,10 @@
                         <p class="mb-0 text-white-50 font-size-sm">Administrator</p>
                     </div>
                     <div class="p-2">
+                        <a href="" class="dropdown-item d-flex align-items-center justify-content-between">Profile</a>
+                        <div class="dropdown-divider">
+
+                        </div>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="route('logout')"

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbcController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\CanvassController;
 use App\Http\Controllers\NoaController;
 use App\Http\Controllers\NtpController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\RequestQoutationController;
 use App\Http\Controllers\UserController;
+use App\Models\Announcement;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +52,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('abc', AbcController::class);
     Route::resource('notice-of-award', NoaController::class);
     Route::resource('notice-to-proceed', NtpController::class);
+    Route::resource('announcement', AnnouncementController::class);
 });
 
 require __DIR__.'/auth.php';

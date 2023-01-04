@@ -35,45 +35,6 @@
         <!-- END Stylesheets -->
     </head>
     <body>
-        <!-- Page Container -->
-        <!--
-            Available classes for #page-container:
-
-        GENERIC
-
-            'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
-
-        SIDEBAR & SIDE OVERLAY
-
-            'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
-            'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
-            'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
-            'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
-            'sidebar-dark'                              Dark themed sidebar
-
-            'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
-            'side-overlay-o'                            Visible Side Overlay by default
-
-            'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
-
-            'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
-
-        HEADER
-
-            ''                                          Static Header if no class is added
-            'page-header-fixed'                         Fixed Header
-
-        HEADER STYLE
-
-            ''                                          Light themed Header
-            'page-header-dark'                          Dark themed Header
-
-        MAIN CONTENT LAYOUT
-
-            ''                                          Full width Main Content if no class is added
-            'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
-            'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
-        -->
         <div id="page-container">
 
             <!-- Main Container -->
@@ -92,10 +53,10 @@
                                                 <i class="fa fa-2x fa-circle-notch text-primary"></i>
                                             </p>
                                             <h1 class="h4 mb-1">
-                                                Sign In
+                                                Web-Based Record Management System in Sta. Magdalena, Sorsogon
                                             </h1>
                                             <h2 class="h6 font-w400 text-muted mb-3">
-                                                A perfect match for your project
+                                                Please Log In to your account
                                             </h2>
                                         </div>
                                         <!-- END Header -->
@@ -103,13 +64,14 @@
                                         <!-- Sign In Form -->
                                         <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js) -->
                                         <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                                        <form class="js-validation-signin" action="be_pages_auth_all.html" method="POST">
+                                        <form class="js-validation-signin" action="{{route('login')}}" method="POST">
+                                            @csrf
                                             <div class="py-3">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control form-control-lg form-control-alt" id="login-username" name="login-username" placeholder="Username">
+                                                    <input type="text" class="form-control form-control-lg form-control-alt" id="login-username" name="email" placeholder="Email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control form-control-lg form-control-alt" id="login-password" name="login-password" placeholder="Password">
+                                                    <input type="password" class="form-control form-control-lg form-control-alt" id="login-password" name="password" placeholder="Password">
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="d-md-flex align-items-md-center justify-content-md-between">

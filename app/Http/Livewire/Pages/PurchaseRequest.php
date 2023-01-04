@@ -58,8 +58,8 @@ class PurchaseRequest extends Component
             $templateProcessor->setValue('province', strtoupper('Sorsogon'));
             $templateProcessor->setValue('pr_no', $this->purchaseRequest->pr_no);
             $templateProcessor->setValue('date', $this->purchaseRequest->pr_date);
-            $templateProcessor->setValue('requesting_official', $this->purchaseRequest->requestedBy->full_name);
-            $templateProcessor->setValue('sk_chairperson', $skChairperson->full_name);
+            $templateProcessor->setValue('requesting_official', $this->purchaseRequest?->requestedBy->full_name);
+            $templateProcessor->setValue('sk_chairperson', $skChairperson?->full_name);
             $templateProcessor->setValue('total_words', strtoupper($amountInWords));
             $templateProcessor->setValue('total_amount', 'Php ' . number_format($total));
             $templateProcessor->setValue('purpose', $this->purchaseRequest->purpose);

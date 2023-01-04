@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('page-name')
-    Purchase Request
+    Notice to Proceed
 @endsection
 @section('content')
 <form action="{{route('notice-to-proceed.store')}}" method="POST">
