@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseOrder\StoreRequest;
+use App\Http\Requests\PurchaseOrder\UpdateRequest;
 use App\Models\PurchaseOrder;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class PurchaseOrderController extends Controller
 {
@@ -96,7 +98,8 @@ class PurchaseOrderController extends Controller
      */
     public function edit(PurchaseOrder $purchaseOrder)
     {
-        //
+        $suppliers = Supplier::get();
+        return view('pages.PurchaseOrder.edit', compact('suppliers', 'purchaseOrder'));
     }
 
     /**
@@ -106,9 +109,51 @@ class PurchaseOrderController extends Controller
      * @param  \App\Models\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PurchaseOrder $purchaseOrder)
+    public function update(UpdateRequest $request, PurchaseOrder $purchaseOrder)
     {
-        //
+        $validated = $request->validated();
+        $purchaseOrder->update(Arr::only($validated, ['po_no', 'po_date', 'mode_of_procurement', 'place_of_delivery', 'date_of_delivery', 'delivery_term', 'payment_term', 'supplier_id']));
+
+        if (isset($validated['poItemId'])) {
+            // get the existing items
+            $poItems = $purchaseOrder->purchaseOrderItem()->pluck('id');
+            $deletedIds = $poItems->diff($validated['poItemId'])->toArray();
+            if ($deletedIds) {
+                $purchaseOrder->purchaseOrderItem()->whereIn('id', $deletedIds)->delete();
+            }
+
+            $totalSum = 0;
+            foreach ($validated['poItemId'] as $key => $poItem) {
+                if (isset($validated['unitCosts'])) {
+                    $totalSum += ($validated['qtys'][$key] * $validated['unitCosts'][$key]);
+                }
+                if (!$poItem && $validated['items'][$key] && $validated['units'][$key]) {
+                    $purchaseOrder->purchaseOrderItem()->create([
+                        'item_no' => $key + 1,
+                        'item' => $validated['items'][$key],
+                        'unit' => $validated['units'][$key],
+                        'qty' => $validated['qtys'][$key],
+                        'unit_price' => $validated['unitCosts'][$key],
+                        'amount' => $validated['qtys'][$key] * $validated['unitCosts'][$key],
+                    ]);
+                } else {
+                    $purchaseOrder->purchaseOrderItem()
+                        ->where('id', $poItem)
+                        ->update([
+                            'item_no' => $key + 1,
+                            'item' => $validated['items'][$key],
+                            'unit' => $validated['units'][$key],
+                            'qty' => $validated['qtys'][$key],
+                            'unit_price' => $validated['unitCosts'][$key],
+                            'amount' => $validated['qtys'][$key] * $validated['unitCosts'][$key],
+                        ]);
+                }
+            }
+            $purchaseOrder->update([
+                'total_amount' => $totalSum
+            ]);
+        }
+        return back()->withSuccess('Purchase order has been updated.');
     }
 
     /**

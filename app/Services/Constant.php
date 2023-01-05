@@ -7,6 +7,7 @@ class Constant
     public const TEMPLATE_PATH_PR = 'docs/pr_template.docx';
     public const TEMPLATE_PATH_NOA = 'docs/noa.docx';
     public const TEMPLATE_PATH_NTP = 'docs/ntp.docx';
+    public const TEMPLATE_PATH_PO = 'docs/po_template.docx';
 
 
     public static function getBarangays()

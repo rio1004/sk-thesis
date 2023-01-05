@@ -18,7 +18,6 @@
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>PR No.</th>
                         <th>PO No.</th>
                         <th>Supplier</th>
                         <th>Total Amount</th>
@@ -31,7 +30,6 @@
                 @forelse($purchaseOrders as $purchaseOrder)
                     <tr>
                         <td>{{ $purchaseOrder->po_date->format('M. d, Y') }}</td>
-                        <td>{{ $purchaseOrder->purchaseRequest?->pr_no ?? '<empty>' }}</td>
                         <td>{{ $purchaseOrder->po_no }}</td>
                         <td>{{ $purchaseOrder->supplier->supplier_name }}</td>
                         <td>Php. {{ number_format($purchaseOrder->total_amount, 2) }}</td>
