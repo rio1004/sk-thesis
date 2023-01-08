@@ -83,6 +83,32 @@
                 });
             });
         </script>
+
+        <script>
+            window.addEventListener('swal:confirm-approve', event => {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'question',
+                    title: event.detail.title,
+                    text: event.detail.text,
+                    showCancelButton: true,
+                    confirmButtonText: `Yes`,
+                    denyButtonText: `Cancel`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.livewire.emit('send', event.detail.id)
+                        Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: 'Successfully Sent Email',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    }
+                });
+            });
+        </script>
+
         <script>
             $(document).ready(function () {
                 window.Alpine = Alpine;
