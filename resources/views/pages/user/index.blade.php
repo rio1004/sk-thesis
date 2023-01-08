@@ -43,8 +43,10 @@
                         <td>
                             <span class="badge badge-primary">{{$user->brgy}}</span>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center d-flex align-content-center">
+                            @livewire('approve.approve', ['user' => $user], key($user->id))
                             @livewire('user.user', ['user' => $user], key($user->id))
+                            
                         </td>
                     </tr>
                     @empty
