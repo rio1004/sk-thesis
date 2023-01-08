@@ -4,6 +4,7 @@ namespace App\Services;
 
 class Constant
 {
+    public const TEMPLATE_PATH_ABC = 'docs/abc-template.docx';
     public const TEMPLATE_PATH_PR = 'docs/pr_template.docx';
     public const TEMPLATE_PATH_NOA = 'docs/noa.docx';
     public const TEMPLATE_PATH_NTP = 'docs/ntp.docx';

@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Tenancy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AbcItem extends Model
+class Budget extends Model
 {
-    use HasFactory;
-    protected $guarded =[];
+    use HasFactory, Tenancy;
+
+    protected $guarded = [];
 }
