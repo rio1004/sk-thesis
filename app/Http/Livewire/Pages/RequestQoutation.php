@@ -6,7 +6,9 @@ use Livewire\Component;
 use App\Models\Official;
 use app\Models\RequestQoutation as RequestQout;
 use App\Services\Constant;
-use PhpOffice\PhpWord\TemplateProcessor;
+use PhpOffice\PhpSpreadsheet\TemplateProcessor;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 use Arr;
 use Auth;
 class RequestQoutation extends Component
@@ -35,7 +37,7 @@ class RequestQoutation extends Component
         $path = storage_path(Constant::TEMPLATE_PATH_RFQ);
         $spreadsheet = IOFactory::load($path);
         $spreadsheet->setActiveSheetIndex(0);
-
+        $brgy = auth()->user()->brgy;
 
         if ($this->qoutation) {
             $this->qoutation->load('request_items', 'supplier', 'procurement_officer');

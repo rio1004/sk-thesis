@@ -6,7 +6,9 @@ use App\Models\RequestQoutation;
 use App\Models\Supplier;
 use App\Models\Official;
 use App\Http\Requests\RequestQoutation\StoreRequest;
+use App\Http\Requests\RequestQoutation\UpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class RequestQoutationController extends Controller
 {
@@ -92,30 +94,30 @@ class RequestQoutationController extends Controller
      * @param  \App\Models\RequestQoutation  $requestQoutation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequestQoutation $requestQoutation)
+    public function update(UpdateRequest $request, RequestQoutation $requestQoutation)
     {
         $validated = $request->validated();
 
-        $qoutation->update(Arr::only($validated, ['qoutation_no','date', 'supplier_id','procurement_ofcr_id']));
+        $requestQoutation->update(Arr::only($validated, ['qoutation_no','date', 'supplier_id','procurement_ofcr_id']));
         // get the existing items
-        $qoutations = $qoutation->request_items()->pluck('id');
+        $qoutations = $requestQoutation->request_items()->pluck('id');
         $deletedIds = $qoutations->diff($validated['rqId'])->toArray();
         if ($deletedIds) {
-            $qoutation->request_items()->whereIn('id', $deletedIds)->delete();
+            $requestQoutation->request_items()->whereIn('id', $deletedIds)->delete();
         }
         foreach ($validated['rqId'] as $key => $qoutation_item) {
             if (!$qoutation_item) {
-                $qoutation->request_items()->create([
-                    'item_id' => $validated['items'][$key],
-                    'unit_id' => $validated['units'][$key],
+                $requestQoutation->request_items()->create([
+                    'item' => $validated['items'][$key],
+                    'unit' => $validated['units'][$key],
                     'qty' => $validated['qtys'][$key],
                 ]);
             } else {
-                $qoutation->request_items()
+                $requestQoutation->request_items()
                     ->where('id', $qoutation_item)
                     ->update([
-                        'item_id' => $validated['items'][$key],
-                        'unit_id' => $validated['units'][$key],
+                        'item' => $validated['items'][$key],
+                        'unit' => $validated['units'][$key],
                         'qty' => $validated['qtys'][$key],
                     ]);
             }

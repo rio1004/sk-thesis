@@ -8,6 +8,9 @@ class Constant
     public const TEMPLATE_PATH_NOA = 'docs/noa.docx';
     public const TEMPLATE_PATH_NTP = 'docs/ntp.docx';
     public const TEMPLATE_PATH_PO = 'docs/po_template.docx';
+    public const TEMPLATE_PATH_RFQ = 'docs/RFQ.xlsx';
+    public const TEMPLATE_PATH_CANVASS = 'docs/SK-canvass.xlsx';
+    public const TEMPLATE_PATH_SKCC = 'docs/skcc-voucher.docx';
 
 
     public static function getBarangays()

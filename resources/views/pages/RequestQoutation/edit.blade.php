@@ -3,8 +3,9 @@
 Request for Qoutation
 @endsection
 @section('content')
-<form action="{{route('qoutation.store')}}" method="POST">
+<form action="{{route('qoutation.update',[$qoutation])}}" method="POST">
     @csrf
+    @method('PUT')
     <x-alert></x-alert>
     <x-error></x-error>
     <div class="block block-rounded">
@@ -86,7 +87,6 @@ Request for Qoutation
                 </div>
             </div>
             @endforeach
-
         </div>
         <div class="form-group pl-5 pb-3">
             <button type="submit" class="btn btn-sm btn-primary">

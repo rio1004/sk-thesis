@@ -3,6 +3,7 @@
 use App\Http\Controllers\AbcController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\CanvassController;
+use App\Http\Controllers\DisbursementController;
 use App\Http\Controllers\NoaController;
 use App\Http\Controllers\NtpController;
 use App\Http\Controllers\OfficialController;
@@ -27,7 +28,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('dashboard');
+    $announcements = Announcement::get();
+    return view('dashboard', compact('announcements'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -53,6 +55,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('notice-of-award', NoaController::class);
     Route::resource('notice-to-proceed', NtpController::class);
     Route::resource('announcement', AnnouncementController::class);
+    Route::resource('dibursement', DisbursementController::class);
 });
 
 require __DIR__.'/auth.php';
