@@ -7,7 +7,7 @@
     <div class="block-header">
         <h3 class="block-title">List of Approved budget for Contract</h3>
         <div class="block-options">
-            <a type="button" class="btn btn-sm btn-alt-primary" href="{{route('qoutation.create')}}">
+            <a type="button" class="btn btn-sm btn-alt-primary" href="{{route('abc.create')}}">
                 <i class="fa fa-user-plus mr-1"></i> Approved budget for Contract
             </a>
         </div>
@@ -18,34 +18,23 @@
                 <thead>
                     <tr>
                         <th>Procurement Title</th>
-                            <th>PR No.</th>
-                            <th>Prepared By</th>
-                            <th>Approved By</th>
-                            <th>Recommending Approval</th>
-                            <th>Approved Bidder</th>
+                        <th>Prepared By</th>
+                        <th>Approved By</th>
+                        <th>Recommending Approval</th>
+                        <th>Approved Bidder</th>
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($abcs as $abc)
                     <tr>
-                        <td class="font-w600 font-size-sm">
-                          {{$abc->procurement_title}}
-                        </td>
-                        <td class="font-w600 font-size-sm">
-                          {{$abc->prepared_by->full_name}}
-                        </td>
-                        <td class="font-w600 font-size-sm">
-                          {{$abc->approved_by->full_name}}
-                        </td>
-                        <td class="font-w600 font-size-sm">
-                          {{$abc->recommended_by->full_name}}
-                        </td>
-                        <td class="font-w600 font-size-sm">
-                          {{$abc->bidder}}
-                        </td>
+                        <td>{{ $abc->procurement_title }}</td>
+                        <td>{{ $abc->submittedBy->full_name }}</td>
+                        <td>{{ $abc->approvedBy->full_name }}</td>
+                        <td>{{ $abc->recommendedBy->full_name }}</td>
+                        <td>{{ $abc->bidder }}</td>
                         <td class="text-center">
-                            {{-- @livewire('pages.abc', ['abc' => $abc], key($abc->id)) --}}
+                            @livewire('abc.abc', ['abc' => $abc], key($abc->id))
                         </td>
                     </tr>
                     @empty

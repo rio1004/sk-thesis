@@ -92,8 +92,7 @@ class DisbursementController extends Controller
                 'purpose' => $validated['purpose'][$key],
             ]);
         }
-
-        return back()->withSuccess('Disbursement voucher has been created');
+        return back()->with('success-message','Disbursement voucher has been created');
     }
 
     /**

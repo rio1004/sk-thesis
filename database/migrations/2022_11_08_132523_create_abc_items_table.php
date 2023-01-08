@@ -25,9 +25,8 @@ return new class extends Migration
      $table->string('valuation_adjustment')->default(0);
      $table->string('total_cost')->default(0);
      $table->string('unit_cost')->default(0);
-
-     $table->foreignId('item');
-     $table->foreignId('unit');
+     $table->string('item');
+     $table->string('unit');
      $table->foreignId('abc_id')->nullable()->references('id')->on('abcs')->cascadeOnDelete();
             $table->timestamps();
         });
