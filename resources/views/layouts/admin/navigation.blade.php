@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="be_comp_syntax_highlighting.html">
+                        <a class="nav-main-link" href="{{route('dibursement.index')}}">
                             <span class="nav-main-link-name">Disbursement Voucher</span>
                         </a>
                     </li>
