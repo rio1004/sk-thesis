@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbcController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CanvassController;
 use App\Http\Controllers\DisbursementController;
 use App\Http\Controllers\NoaController;
@@ -13,6 +14,9 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\RequestQoutationController;
 use App\Http\Controllers\UserController;
 use App\Models\Announcement;
+use App\Models\Budget;
+use App\Models\PurchaseOrder;
+use App\Models\PurchaseRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +33,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $announcements = Announcement::get();
-    return view('dashboard', compact('announcements'));
+    $budget = Budget::where('fy_year', date('Y'))->first();
+    $pr=PurchaseRequest::get()->count();
+    $po=PurchaseOrder::get()->count();
+    return view('dashboard', compact('announcements', 'budget', 'pr', 'po'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -56,6 +63,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('notice-to-proceed', NtpController::class);
     Route::resource('announcement', AnnouncementController::class);
     Route::resource('dibursement', DisbursementController::class);
+    Route::resource('budget', BudgetController::class);
 });
 
 require __DIR__.'/auth.php';

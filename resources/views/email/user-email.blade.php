@@ -1,5 +1,5 @@
 <x-mail::message>
-# Web-Based Record Management System in Sta. Magdalena, Sorsogon
+#   Web-based Record Management System of Sangguniang Kabataan of Sta. Magdalena, Sorsogon
 
 Welcome!, you may now login with your credentials
 

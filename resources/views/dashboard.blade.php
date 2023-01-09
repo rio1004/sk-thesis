@@ -7,8 +7,8 @@
     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
         <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
             <div class="block-content block-content-full">
-                <div class="font-size-sm font-w600 text-uppercase text-muted">Approved Budget</div>
-                <div class="font-size-h2 font-w400 text-dark">120,580</div>
+                <div class="font-size-sm font-w600 text-uppercase text-muted">Budget Remaining</div>
+                <div class="font-size-h2 font-w400 text-dark">{{ number_format($budget?->remaining_budget, 2) }}</div>
             </div>
         </a>
     </div>
@@ -16,7 +16,7 @@
         <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
             <div class="block-content block-content-full">
                 <div class="font-size-sm font-w600 text-uppercase text-muted">Total Purchase Request</div>
-                <div class="font-size-h2 font-w400 text-dark">150</div>
+                <div class="font-size-h2 font-w400 text-dark">{{$pr}}</div>
             </div>
         </a>
     </div>
@@ -32,7 +32,7 @@
         <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
             <div class="block-content block-content-full">
                 <div class="font-size-sm font-w600 text-uppercase text-muted">Total Purchase Orders</div>
-                <div class="font-size-h2 font-w400 text-dark">21</div>
+                <div class="font-size-h2 font-w400 text-dark">{{$po}}</div>
             </div>
         </a>
     </div>

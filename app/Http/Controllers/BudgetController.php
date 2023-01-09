@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Budget\StoreRequest;
 use App\Models\Budget;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        //
+        $budgets= Budget::get();
+        return view('pages.Budget.index',compact('budgets'));
     }
 
     /**
@@ -24,7 +26,7 @@ class BudgetController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.Budget.create');
     }
 
     /**
@@ -33,9 +35,16 @@ class BudgetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+        Budget::updateOrCreate(
+            $validated + [
+                'user_id' => auth()->user()->id,
+                'remaining_budget' => $validated['initial_budget']
+            ]);
+
+        return redirect()->route('pages.Budget.index')->withSuccess('Your budget has been initialized.');
     }
 
     /**
@@ -46,7 +55,7 @@ class BudgetController extends Controller
      */
     public function show(Budget $budget)
     {
-        //
+
     }
 
     /**
@@ -57,7 +66,7 @@ class BudgetController extends Controller
      */
     public function edit(Budget $budget)
     {
-        //
+        return view('pages.Budget.edit', compact('budget'));
     }
 
     /**
@@ -67,9 +76,15 @@ class BudgetController extends Controller
      * @param  \App\Models\Budget  $budget
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Budget $budget)
+    public function update(StoreRequest $request, Budget $budget)
     {
-        //
+        $validated=$request->validated();
+        $budget->update(
+            $validated + [
+                'remaining_budget' => $validated['initial_budget']
+            ]);
+
+        return redirect()->route('budget.index')->withSuccess('Your budget has been initialized.');
     }
 
     /**

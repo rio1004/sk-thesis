@@ -21,8 +21,8 @@
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
         <link rel="shortcut icon" href="{{asset('assets/media/favicons/favicon.png')}}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{asset('assets/media/favicons/favicon-192x192.png')}}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/media/favicons/apple-touch-icon-180x180.png')}}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{asset('assets/media/photos/logo.png')}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/media/photos/logo.png')}}">
         <!-- END Icons -->
 
         <!-- Stylesheets -->
@@ -36,12 +36,12 @@
     </head>
     <body>
         <div id="page-container">
-
             <!-- Main Container -->
             <main id="main-container">
                 <!-- Page Content -->
                 <div class="hero-static d-flex align-items-center">
                     <div class="w-100">
+
                         <!-- Sign In Section -->
                         <div class="bg-white">
                             <div class="content content-full">
@@ -49,16 +49,20 @@
                                     <div class="col-md-8 col-lg-6 col-xl-4 py-4">
                                         <!-- Header -->
                                         <div class="text-center">
+
                                             <p class="mb-2">
-                                                <i class="fa fa-2x fa-circle-notch text-primary"></i>
+                                                <img src="{{asset('assets/media/photos/logo.png')}}" alt="" width="150">
+                                                {{-- <i class="fa fa-2x fa-circle-notch text-primary"></i> --}}
                                             </p>
                                             <h1 class="h4 mb-1">
-                                                Web-Based Record Management System in Sta. Magdalena, Sorsogon
+                                                Web-based Record Management System of Sangguniang Kabataan of Sta. Magdalena, Sorsogon
                                             </h1>
                                             <h2 class="h6 font-w400 text-muted mb-3">
                                                 Please Log In to your account
                                             </h2>
                                         </div>
+            <x-error></x-error>
+
                                         <!-- END Header -->
 
                                         <!-- Sign In Form -->
@@ -78,9 +82,6 @@
                                                         <div class="custom-control custom-switch">
                                                             <input type="checkbox" class="custom-control-input" id="login-remember" name="login-remember">
                                                             <label class="custom-control-label font-w400" for="login-remember">Remember Me</label>
-                                                        </div>
-                                                        <div class="py-2">
-                                                            <a class="font-size-sm font-w500" href="op_auth_reminder2.html">Forgot Password?</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -102,7 +103,7 @@
 
                         <!-- Footer -->
                         <div class="font-size-sm text-center text-muted py-3">
-                            <strong>OneUI 4.7</strong> &copy; <span data-toggle="year-copy"></span>
+                            <strong>@SK System</strong> &copy; <span data-toggle="year-copy"></span>
                         </div>
                         <!-- END Footer -->
                     </div>
