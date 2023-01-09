@@ -1,5 +1,5 @@
 <div class="btn-group">
-    <a href="{{route('notice-to-proceed.edit', $ntp)}}" class="btn btn-sm btn-alt-success"  data-toggle="tooltip" title="Edit">
+    <a href="{{route('notice-to-proceed.edit', $ntp->id)}}" class="btn btn-sm btn-alt-success"  data-toggle="tooltip" title="Edit">
         <i class="fa fa-fw fa-pencil-alt"></i>
     </a>
     <button type="button" class="btn btn-sm btn-alt-info" data-toggle="tooltip" title="Export" wire:click="export" wire:loading.attr="disabled">

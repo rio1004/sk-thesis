@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Noa\StoreRequest;
+use App\Http\Requests\Noa\UpdateRequest;
 use App\Models\Canvass;
 use App\Models\Noa;
 use Illuminate\Http\Request;
@@ -59,7 +60,7 @@ class NoaController extends Controller
      */
     public function show(Noa $noa)
     {
-        //
+        
     }
 
     /**
@@ -68,9 +69,11 @@ class NoaController extends Controller
      * @param  \App\Models\Noa  $noa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Noa $noa)
+    public function edit(Noa $noa , $id)
     {
-        //
+        $noa = Noa::find($id);
+        $canvasses = Canvass::get();
+        return view('pages.Noa.edit', compact('canvasses' , 'noa'));
     }
 
     /**
@@ -80,9 +83,17 @@ class NoaController extends Controller
      * @param  \App\Models\Noa  $noa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Noa $noa)
+    public function update(UpdateRequest $request, Noa $noa , $id)
     {
-        //
+        $noa = Noa::find($id);
+        $validated = $request->validated();
+        $noa->update([
+            'noa_date' => $validated['noa_date'],
+            'noa_approved_price' => $validated['noa_approved_price'],
+            'bid_date' => $validated['bid_date'],
+            'canvass_id' => $validated['canvass_id'],
+        ]);
+        return redirect()->back()->with('success-message', "NOA has been updated");
     }
 
     /**
