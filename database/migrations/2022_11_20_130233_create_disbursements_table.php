@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('or_date')->nullable();
             $table->string('payee_name')->nullable();
             $table->string('payee_address')->nullable();
+            $table->string('status')->nullable();
             $table->string('payee_tin')->nullable();
             $table->foreignId('payee_id')->nullable()->references('id')->on('suppliers')->nullOnDelete();
             $table->text('particular_text')->nullable();

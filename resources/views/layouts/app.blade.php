@@ -151,7 +151,7 @@
                 <div class="content-header bg-white-5">
                     <a class="font-w600 text-dual" href="index.html">
                         <span class="smini-hide font-size-h5 tracking-wider">
-                           SK Management System
+                            Web-based Record Management System
                         </span>
                     </a>
                 </div>

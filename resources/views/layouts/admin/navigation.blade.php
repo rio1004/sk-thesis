@@ -76,7 +76,7 @@
                 </a>
             </li>
             <li class="nav-main-item">
-                <a class="nav-main-link" href="be_pages_dashboard.html">
+                <a class="nav-main-link" href="{{route('budget.index')}}">
                     <i class="nav-main-link-icon si si-wallet"></i>
                     <span class="nav-main-link-name">Budget</span>
                 </a>
