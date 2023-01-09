@@ -12,6 +12,7 @@ use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\RequestQoutationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Announcement;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('notice-to-proceed', NtpController::class);
     Route::resource('announcement', AnnouncementController::class);
     Route::resource('dibursement', DisbursementController::class);
+    Route::resource('profile', ProfileController::class);
+    Route::put('/update-my-password/{id}', [ProfileController::class, 'changePassword'])->name('update-my-password');
 });
 
 require __DIR__.'/auth.php';

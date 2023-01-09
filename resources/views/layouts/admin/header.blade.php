@@ -16,7 +16,7 @@
                         <p class="mb-0 text-white-50 font-size-sm">Administrator</p>
                     </div>
                     <div class="p-2">
-                        <a href="" class="dropdown-item d-flex align-items-center justify-content-between">Profile</a>
+                        <a href="{{route('profile.show' , Auth::user()->id)}}" class="dropdown-item d-flex align-items-center justify-content-between">Profile</a>
                         <div class="dropdown-divider">
 
                         </div>
