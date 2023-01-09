@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Ntp\StoreRequest;
+use App\Http\Requests\Ntp\UpdateRequest;
 use App\Models\Canvass;
 use App\Models\Ntp;
 use Illuminate\Http\Request;
@@ -66,9 +67,11 @@ class NtpController extends Controller
      * @param  \App\Models\Ntp  $ntp
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ntp $ntp)
+    public function edit(Ntp $ntp, $id)
     {
-        //
+        $ntp = Ntp::find($id);
+        $canvasses = Canvass::get();
+        return view('pages.Ntp.edit', compact('ntp' , 'canvasses'));
     }
 
     /**
@@ -78,9 +81,17 @@ class NtpController extends Controller
      * @param  \App\Models\Ntp  $ntp
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ntp $ntp)
+    public function update(UpdateRequest $request, Ntp $ntp, $id)
     {
-        //
+        $ntp = Ntp::find($id);
+        $validated = $request->validated();
+        $ntp->update([
+            'ntp_date' => $validated['ntp_date'],
+            'ntp_effectivity_date' => $validated['ntp_effectivity_date'],
+            'project_location' => $validated['project_location'],
+            'canvass_id' => $validated['canvass_id'],
+        ]);
+        return redirect()->back()->with("success-message","NTP has been updated");
     }
 
     /**

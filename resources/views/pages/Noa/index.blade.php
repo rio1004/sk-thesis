@@ -40,7 +40,10 @@
                           {{$noa->bid_date->format('M. d, Y')}}
                         </td>
                         <td class="text-center">
+                          
+                            
                             @livewire('pages.noa', ['noa' => $noa], key($noa->id))
+                          
                         </td>
                     </tr>
                     @empty

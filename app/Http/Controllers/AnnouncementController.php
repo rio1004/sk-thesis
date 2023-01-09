@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Announcement\StoreRequest;
+use App\Http\Requests\Announcement\UpdateRequest;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 
@@ -64,7 +65,8 @@ class AnnouncementController extends Controller
      */
     public function edit(Announcement $announcement)
     {
-        //
+        // $announcement = Announcement::find($id);
+        return view('pages.Announcement.edit', compact('announcement'));
     }
 
     /**
@@ -74,9 +76,13 @@ class AnnouncementController extends Controller
      * @param  \App\Models\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Announcement $announcement)
+    public function update(UpdateRequest $request, Announcement $announcement)
     {
-        //
+        $validated = $request->validated();
+
+        $announcement->update($validated);
+
+        return redirect()->back()->with('success-message', 'Announcement Successfully Updated');
     }
 
     /**
