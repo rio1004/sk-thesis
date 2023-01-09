@@ -44,7 +44,7 @@ class BudgetController extends Controller
                 'remaining_budget' => $validated['initial_budget']
             ]);
 
-        return redirect()->route('pages.Budget.index')->withSuccess('Your budget has been initialized.');
+        return redirect()->route('budget.index')->withSuccess('Your budget has been initialized.');
     }
 
     /**
