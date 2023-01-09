@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Pages;
 
+use App\Models\Budget;
 use App\Models\Disbursement as ModelsDisbursement;
 use App\Models\Official;
 use App\Services\Constant;
@@ -11,8 +12,7 @@ use PhpOffice\PhpWord\TemplateProcessor;
 class Disbursement extends Component
 {
     public $disbursement;
-    protected $listeners = ['delete'];
-
+    protected $listeners = ['delete','release'];
 
     public function deleteConfirm(){
         $this->dispatchBrowserEvent('swal:confirm', [
@@ -20,7 +20,31 @@ class Disbursement extends Component
             'message' => 'Are you sure?'
         ]);
     }
+    public function releaseConfirmation()
+    {
+        $this->dispatchBrowserEvent('swal:confirm-release', [
+            'id' => $this->disbursement->id,
+            'message' => 'Are you sure you want to release this Disbursement?'
+        ]);
+    }
 
+    public function release($id)
+    {
+        $disbursement = ModelsDisbursement::find($id);
+        if ($disbursement) {
+            $disbursement->update([
+                'status' => 'released'
+            ]);
+
+            // deduct budget
+            $budget = Budget::where('fy_year', date('Y'))->first();
+            if ($budget) {
+                $budget->decrement('remaining_budget', $disbursement->total_amount);
+            }
+        }
+
+        return redirect()->to('dibursement');
+    }
     public function delete($id)
     {
         $disbursement = ModelsDisbursement::where('id', $id)->first();

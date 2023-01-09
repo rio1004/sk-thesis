@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Announcement;
 use App\Models\Budget;
+use App\Models\Disbursement;
 use App\Models\PurchaseOrder;
 use App\Models\PurchaseRequest;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,8 @@ Route::get('/', function () {
     $budget = Budget::where('fy_year', date('Y'))->first();
     $pr=PurchaseRequest::get()->count();
     $po=PurchaseOrder::get()->count();
-    return view('dashboard', compact('announcements', 'budget', 'pr', 'po'));
+    $dv=Disbursement::where('status', 'released')->get()->count();
+    return view('dashboard', compact('announcements', 'budget', 'pr', 'po','dv'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
