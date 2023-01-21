@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('canvass_suppliers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
+
             $table->string('status')->default(0);
             $table->string('type')->default(0);
             $table->integer('amount');

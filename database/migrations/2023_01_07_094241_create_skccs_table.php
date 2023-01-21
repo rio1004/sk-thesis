@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('skccs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
+
             $table->foreignId('disbursement_id')->constrained()->cascadeOnDelete();
             $table->string('skcc_no')->nullable();
             $table->date('skcc_date')->nullable();

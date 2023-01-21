@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('abc_items', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('admin_id')->default(1);
      $table->integer('item_no')->nullable();
      $table->string('qty');
      $table->string('tax')->default(0);

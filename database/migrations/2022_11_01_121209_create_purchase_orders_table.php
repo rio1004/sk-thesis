@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('pr_id')->nullable()->references('id')->on('purchase_requests')->nullOnDelete();
             $table->foreignId('supplier_id')->nullable()->constrained()->cascadeOnDelete();

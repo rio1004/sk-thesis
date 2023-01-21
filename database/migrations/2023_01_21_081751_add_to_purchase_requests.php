@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('canvasses', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('admin_id')->default(1);
-            $table->string('project_name');
-            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->timestamps();
+        Schema::table('purchase_requests', function (Blueprint $table) {
+            $table->integer('admin_approved')->default(0);
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('canvasses');
+        Schema::table('purchase_requests', function (Blueprint $table) {
+            //
+        });
     }
 };

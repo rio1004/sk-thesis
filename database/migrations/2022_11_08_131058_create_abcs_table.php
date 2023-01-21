@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('abcs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
+
             $table->string('procurement_title');
             $table->string('bidder');
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();

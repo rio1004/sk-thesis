@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('disbursements', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
+
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('dv_no')->nullable();
             $table->date('dv_date')->nullable();

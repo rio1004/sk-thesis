@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('noas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
             $table->string('noa_date');
             $table->string('noa_approved_price');
             $table->string('bid_date');

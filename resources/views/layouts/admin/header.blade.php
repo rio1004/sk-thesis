@@ -1,6 +1,9 @@
 <header id="page-header">
     <div class="content-header">
         <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
+                <i class="fa fa-fw fa-bars"></i>
+            </button>
         </div>
         <div class="d-flex align-items-center">
             <div class="dropdown d-inline-block ml-2">

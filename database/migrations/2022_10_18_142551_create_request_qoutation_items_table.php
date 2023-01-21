@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('request_qoutation_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
             $table->integer('qty');
             $table->foreignId('rfq_id')->nullable()->references('id')->on('request_qoutations')->nullOnDelete();
             $table->string('item');

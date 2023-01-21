@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('purchase_request_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
             $table->foreignId('purchase_request_id')->constrained()->cascadeOnDelete();
             $table->integer('item_no')->nullable();
             $table->string('item');
