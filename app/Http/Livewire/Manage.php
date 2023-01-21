@@ -15,7 +15,7 @@ class Manage extends Component
     public $prs;
     public $searchTerm;
     public $brgy_id;
-    protected $listeners = ['release', 'disapproved'];
+    protected $listeners = ['disapproved', 'approved'];
 
     public function updatedselectedBrgy($brgy){
         $this->filteredBrgy = User::where('brgy', $brgy)->first();
@@ -38,14 +38,14 @@ class Manage extends Component
     }
     public function releaseConfirmation($id)
     {
-        $this->dispatchBrowserEvent('swal:confirm-release', [
+        $this->dispatchBrowserEvent('swal:confirm-approve', [
             'id' => $id,
             'message' => 'Are you sure?',
             'text' => 'You are about to APPROVED this Purchase Request',
         ]);
     }
 
-    public function release($id)
+    public function approved($id)
     {
         $disbursement = PurchaseRequest::find($id);
         if ($disbursement) {
@@ -53,7 +53,7 @@ class Manage extends Component
                 'admin_approved' => 1
             ]);
         }
-        return redirect()->to('manage');
+        return redirect()->to('manage/purchase_request');
     }
     public function disapprovedConfirm($id)
     {
@@ -72,7 +72,7 @@ class Manage extends Component
                 'admin_approved' => 2
             ]);
         }
-        return redirect()->to('manage');
+        return redirect()->to('manage/purchase_request');
     }
     public function render()
     {

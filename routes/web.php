@@ -62,7 +62,8 @@ Route::group(['middleware' => ['role:super-admin']], function () {
         Route::group([
             'prefix' => 'manage'
         ], function(){
-            Route::get('/', 'index')->name('manage.index');
+            Route::get('/purchase-request', 'pr_index')->name('manage.pr');
+            Route::get('/purchase-order', 'po_index')->name('manage.po');
         });
     });
 });
@@ -80,7 +81,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('dibursement', DisbursementController::class);
     Route::resource('budget', BudgetController::class);
     Route::resource('profile', ProfileController::class);
+    Route::post('purchase-request/filter', [PurchaseRequestController::class, 'filterBy'])->name('purchase-request.filter');
+    Route::post('purchase-request/', [PurchaseRequestController::class, 'clear'])->name('purchase-request.clear');
+    Route::post('purchase-request/search', [PurchaseRequestController::class, 'search'])->name('purchase-request.search');
     Route::put('/update-my-password/{id}', [ProfileController::class, 'changePassword'])->name('update-my-password');
+
 
 });
 

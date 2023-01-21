@@ -12,24 +12,61 @@ class PurchaseRequest extends Component
 {
 
     public $purchaseRequest;
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete', 'approved', 'disapproved'];
 
     public function deleteConfirm(){
         $this->dispatchBrowserEvent('swal:confirm', [
-            'id' => $this->purchaseRequest->id,
+            'id' => $this->purchaseRequest?->id,
             'message' => 'Are you sure?'
         ]);
     }
 
     public function delete($id){
-        $purchaseRequest = ModelsPurchaseRequest::where('id', $id)->first();
-        if($purchaseRequest != null) {
-            $purchaseRequest->delete();
+        $purchaseRequest = ModelsPurchaseRequest::where('id', $id)?->first();
+        if($purchaseRequest) {
+            $purchaseRequest?->delete();
             return redirect()->to('/purchase-request');
         }
         return redirect()->to('/purchase-request')->with('error', 'Official not found');
     }
+    public function approvedConfirmation()
+    {
+        $this->dispatchBrowserEvent('swal:confirm-approve', [
+            'id' => $this->purchaseRequest->id,
+            'message' => 'Are you sure?',
+            'text' => 'You are about to APPROVED this Purchase Request',
+        ]);
+    }
 
+    public function approved($id)
+    {
+        $disbursement = ModelsPurchaseRequest::find($id);
+        if ($disbursement) {
+            $disbursement->update([
+                'status' => 1
+            ]);
+        }
+        return redirect()->to('purchase-request');
+    }
+    public function disapprovedConfirm()
+    {
+        $this->dispatchBrowserEvent('swal:confirm-disapproved', [
+            'id' => $this->purchaseRequest->id,
+            'message' => 'Are you sure?',
+            'text' => 'You are about to DISAPPROVED this Purchase Request',
+        ]);
+    }
+
+    public function disapproved($id)
+    {
+        $disbursement = ModelsPurchaseRequest::find($id);
+        if ($disbursement) {
+            $disbursement->update([
+                'status' => 2
+            ]);
+        }
+        return redirect()->to('purchase-request');
+    }
 
     public function export()
     {

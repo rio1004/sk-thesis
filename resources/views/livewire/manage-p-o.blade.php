@@ -29,22 +29,22 @@
                 <thead>
 
                     <tr>
-                        <th>PR Number</th>
-                        <th>PR Date</th>
+                        <th>PO Number</th>
+                        <th>PO Date</th>
                         <th>Status</th>
                         <th>Barangay Name</th>
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if ($prs)
-                        @forelse ($prs as $pr)
+                    @if ($pos)
+                        @forelse ($pos as $pr)
                         <tr>
                             <td class="font-w600 font-size-sm">
-                            {{$pr->pr_no}}
+                            {{$pr->po_no}}
                             </td>
                             <td class="font-w600 font-size-sm">
-                                {{$pr->pr_date->format('Y-M-d')}}
+                                {{$pr->po_date->format('Y-M-d')}}
                             </td>
                             <td class="font-w600 font-size-sm">
                                 @if ($pr->admin_approved ==1)
@@ -71,13 +71,13 @@
                             <td class="font-size-sm" colspan="7">No Data Available</td>
                         @endforelse
                     @else
-                    @forelse ($allPrs as $pr)
+                    @forelse ($allPos as $pr)
                         <tr>
                             <td class="font-w600 font-size-sm">
-                            {{$pr->pr_no}}
+                            {{$pr->po_no}}
                             </td>
                             <td class="font-w600 font-size-sm">
-                                {{$pr->pr_date->format('Y-M-d')}}
+                                {{$pr->po_date->format('Y-M-d')}}
                             </td>
                             <td class="font-w600 font-size-sm">
                                 @if ($pr->admin_approved ==1)

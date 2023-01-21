@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 
 class Manage extends Controller
 {
-    public function index(){
+    public function pr_index(){
         return view('manage');
+    }
+    public function po_index(){
+        return view('manage_po');
     }
 }

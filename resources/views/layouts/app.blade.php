@@ -224,11 +224,11 @@
                     denyButtonText: `Cancel`
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.livewire.emit('send', event.detail.id)
+                        window.livewire.emit('approved', event.detail.id)
                         Swal.fire({
                             position: 'top-center',
                             icon: 'success',
-                            title: 'Successfully Sent Email',
+                            title: 'Successfully Approved',
                             showConfirmButton: false,
                             timer: 1000
                         })
@@ -280,7 +280,7 @@
                         Swal.fire({
                             position: 'top-center',
                             icon: 'success',
-                            title: 'Successfully Released',
+                            title: 'Successfully Disapproved',
                             showConfirmButton: false,
                             timer: 1000
                         })

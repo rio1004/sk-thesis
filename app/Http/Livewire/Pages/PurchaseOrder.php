@@ -13,7 +13,7 @@ class PurchaseOrder extends Component
 
     public $purchaseOrder;
 
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete', 'approved', 'disapproved'];
 
 
     public function deleteConfirm()
@@ -34,6 +34,45 @@ class PurchaseOrder extends Component
         return redirect()->to('/purchase-order')->with('error', 'Purchase Order not found');
 
     }
+    public function approvedConfirmation()
+    {
+        $this->dispatchBrowserEvent('swal:confirm-approve', [
+            'id' => $this->purchaseOrder->id,
+            'message' => 'Are you sure?',
+            'text' => 'You are about to APPROVED this Purchase Order',
+        ]);
+    }
+
+    public function approved($id)
+    {
+        $disbursement = ModelsPurchaseOrder::find($id);
+        if ($disbursement) {
+            $disbursement->update([
+                'status' => 1
+            ]);
+        }
+        return redirect()->to('purchase-order');
+    }
+    public function disapprovedConfirm()
+    {
+        $this->dispatchBrowserEvent('swal:confirm-disapproved', [
+            'id' => $this->purchaseOrder->id,
+            'message' => 'Are you sure?',
+            'text' => 'You are about to DISAPPROVED this Purchase Order',
+        ]);
+    }
+
+    public function disapproved($id)
+    {
+        $disbursement = ModelsPurchaseOrder::find($id);
+        if ($disbursement) {
+            $disbursement->update([
+                'status' => 2
+            ]);
+        }
+        return redirect()->to('purchase-order');
+    }
+
     public function export()
     {
         $path = storage_path(Constant::TEMPLATE_PATH_PO);

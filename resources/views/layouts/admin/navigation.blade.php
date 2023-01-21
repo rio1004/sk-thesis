@@ -90,9 +90,15 @@
                 </a>
             </li>
             <li class="nav-main-item">
-                <a class="nav-main-link" href="{{route('manage.index')}}">
+                <a class="nav-main-link" href="{{route('manage.pr')}}">
                     <i class="nav-main-link-icon si si-wallet"></i>
                     <span class="nav-main-link-name">Purchase Request</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link" href="{{route('manage.po')}}">
+                    <i class="nav-main-link-icon si si-wallet"></i>
+                    <span class="nav-main-link-name">Purchase Order</span>
                 </a>
             </li>
             @endrole

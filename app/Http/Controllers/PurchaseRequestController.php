@@ -6,6 +6,7 @@ use App\Http\Requests\PurchaseRequest\StoreRequest;
 use App\Http\Requests\PurchaseRequest\UpdateRequest;
 use App\Models\Official;
 use App\Models\PurchaseRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -22,6 +23,33 @@ class PurchaseRequestController extends Controller
         return view('pages.PurchaseRequest.index', compact('purchaseRequests'));
     }
 
+    public function filterBy(Request $req)
+    {
+        if($req->filterBy == 'week'){
+            $week_start = Carbon::now()->startOfWeek();
+            $week_end = Carbon::now()->endOfWeek();
+            $purchaseRequests = PurchaseRequest::whereBetween('pr_date', [$week_start, $week_end])->get();
+            return view('pages.PurchaseRequest.index', compact('purchaseRequests'));
+        }
+        elseif($req->filterBy == 'month'){
+            $purchaseRequests = PurchaseRequest::whereYear('pr_date', Carbon::now()->year)
+            ->whereMonth('pr_date', Carbon::now()->month)->get();
+            return view('pages.PurchaseRequest.index', compact('purchaseRequests'));
+        }
+        else{
+            $purchaseRequests = PurchaseRequest::whereYear('pr_date', Carbon::now()->year)
+            ->whereMonth('pr_date', Carbon::now()->month)->get();
+            return view('pages.PurchaseRequest.index', compact('purchaseRequests'));
+        }
+        // Return the filtered requests
+    }
+    public function clear(){
+        $this->index();
+    }
+    public function search(Request $req){
+        $purchaseRequests =PurchaseRequest::where('pr_no', 'like' ,  "%{$req->searchTerm}%")?->get();
+        return view('pages.PurchaseRequest.index', compact('purchaseRequests'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -31,7 +59,6 @@ class PurchaseRequestController extends Controller
     {
         $officials = Official::get();
         return view('pages.PurchaseRequest.create', compact('officials'));
-
     }
 
     /**

@@ -12,10 +12,10 @@ class ManagePO extends Component
     public $transaction;
     public $selectedBrgy;
     public $filteredBrgy;
-    public $prs;
+    public $pos;
     public $searchTerm;
     public $brgy_id;
-    protected $listeners = ['release', 'disapproved'];
+    protected $listeners = ['disapproved', 'approved'];
     public function updatedselectedBrgy($brgy){
         $this->filteredBrgy = User::where('brgy', $brgy)->first();
         if(!$this->filteredBrgy && $brgy != ''){
@@ -24,27 +24,26 @@ class ManagePO extends Component
             ]);
         }
         $this->brgy_id = $this->filteredBrgy?->id;
-        $this->prs = $this->filteredBrgy?->purchase_requests;
+        $this->pos = $this->filteredBrgy?->purchase_orders;
     }
 
     public function searchProject(){
         if($this->brgy_id){
-            $this->prs =  PurchaseOrder::where('user_id', $this->brgy_id)->where('pr_no', 'like' ,  "%{$this->searchTerm}%")?->get();
+            $this->pos =  PurchaseOrder::where('user_id', $this->brgy_id)->where('pr_no', 'like' ,  "%{$this->searchTerm}%")?->get();
         }else{
-            $this->prs =  PurchaseOrder::where('po_no', 'like' ,  "%{$this->searchTerm}%")?->get();
+            $this->pos =  PurchaseOrder::where('po_no', 'like' ,  "%{$this->searchTerm}%")?->get();
         }
-
     }
     public function releaseConfirmation($id)
     {
-        $this->dispatchBrowserEvent('swal:confirm-release', [
+        $this->dispatchBrowserEvent('swal:confirm-approve', [
             'id' => $id,
             'message' => 'Are you sure?',
             'text' => 'You are about to APPROVED this Purchase Order',
         ]);
     }
 
-    public function release($id)
+    public function approved($id)
     {
         $disbursement = PurchaseOrder::find($id);
         if ($disbursement) {
@@ -52,7 +51,7 @@ class ManagePO extends Component
                 'admin_approved' => 1
             ]);
         }
-        return redirect()->to('manage');
+        return redirect()->to('manage/purchase-order');
     }
     public function disapprovedConfirm($id)
     {
@@ -71,7 +70,7 @@ class ManagePO extends Component
                 'admin_approved' => 2
             ]);
         }
-        return redirect()->to('manage');
+        return redirect()->to('manage/purchase-order');
     }
     public function render()
     {
