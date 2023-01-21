@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbcController;
+use App\Http\Controllers\Admin\Manage;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CanvassController;
@@ -19,6 +20,8 @@ use App\Models\Budget;
 use App\Models\Disbursement;
 use App\Models\PurchaseOrder;
 use App\Models\PurchaseRequest;
+use App\Models\Supplier;
+use App\Services\Constant;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +42,9 @@ Route::get('/', function () {
     $pr=PurchaseRequest::get()->count();
     $po=PurchaseOrder::get()->count();
     $dv=Disbursement::where('status', 'released')->get()->count();
-    return view('dashboard', compact('announcements', 'budget', 'pr', 'po','dv'));
+    $brgys= Constant::getBarangays();
+    $suppliers = Supplier::get();
+    return view('dashboard', compact('announcements', 'budget', 'pr', 'po','dv', 'brgys'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -51,6 +56,13 @@ Route::group(['middleware' => ['role:super-admin']], function () {
             Route::get('/', 'index')->name('user.index');
             Route::get('/create', 'create')->name('user.create');
             Route::post('/store', 'store')->name('user.store');
+        });
+    });
+    Route::controller(Manage::class)->group(function(){
+        Route::group([
+            'prefix' => 'manage'
+        ], function(){
+            Route::get('/', 'index')->name('manage.index');
         });
     });
 });

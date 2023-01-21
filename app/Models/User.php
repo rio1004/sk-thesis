@@ -49,6 +49,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function purchase_requests(){
+        return $this->hasMany(PurchaseRequest::class);
+    }
+    public function purchase_orders(){
+        return $this->hasMany(PurchaseOrder::class);
+    }
+    public function disbursements(){
+        return $this->hasMany(Disbursement::class);
+    }
 
     public function getFullNameAttribute()
     {

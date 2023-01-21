@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('ntps', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
             $table->string('ntp_date');
             $table->string('project_location');
             $table->string('ntp_effectivity_date');

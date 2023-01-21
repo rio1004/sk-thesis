@@ -154,6 +154,9 @@
                             Web-based Record Management System
                         </span>
                     </a>
+                    <a class="d-lg-none btn btn-sm btn-dual ml-1" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-times"></i>
+                    </a>
                 </div>
                 @include('layouts.admin.navigation')
                 <!-- END Sidebar Scrolling -->
@@ -237,12 +240,43 @@
                     position: 'top-center',
                     icon: 'warning',
                     title: event.detail.message,
+                    text: event.detail.text,
                     showCancelButton: true,
                     confirmButtonText: `Yes`,
                     denyButtonText: `Cancel`
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.livewire.emit('release', event.detail.id)
+                        Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: 'Successfully Released',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    }
+                });
+            });
+            window.addEventListener('brgyError', event => {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'info',
+                    title: event.detail.message,
+                    showConfirmButton: true,
+                })
+            });
+            window.addEventListener('swal:confirm-disapproved', event => {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: event.detail.message,
+                    text: event.detail.text,
+                    showCancelButton: true,
+                    confirmButtonText: `Yes`,
+                    denyButtonText: `Cancel`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.livewire.emit('disapproved', event.detail.id)
                         Swal.fire({
                             position: 'top-center',
                             icon: 'success',

@@ -3,8 +3,11 @@
     Dashboard
 @endsection
 @section('content')
+@role('admin')
+
 <div class="row">
-    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+
+    <div class="col">
         <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
             <div class="block-content block-content-full">
                 <div class="font-size-sm font-w600 text-uppercase text-muted">Budget Remaining</div>
@@ -12,7 +15,7 @@
             </div>
         </a>
     </div>
-    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+    <div class="col">
         <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
             <div class="block-content block-content-full">
                 <div class="font-size-sm font-w600 text-uppercase text-muted">Total Purchase Request</div>
@@ -20,7 +23,7 @@
             </div>
         </a>
     </div>
-    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+    <div class="col">
         <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
             <div class="block-content block-content-full">
                 <div class="font-size-sm font-w600 text-uppercase text-muted">Release Vouchers</div>
@@ -28,7 +31,7 @@
             </div>
         </a>
     </div>
-    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+    <div class="col">
         <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
             <div class="block-content block-content-full">
                 <div class="font-size-sm font-w600 text-uppercase text-muted">Total Purchase Orders</div>
@@ -49,5 +52,9 @@
 
     </div>
 </div>
+@endrole
+@role('super-admin')
+@livewire('admin-dashboard');
+@endrole
 
 @endsection

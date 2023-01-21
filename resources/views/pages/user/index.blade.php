@@ -41,12 +41,12 @@
                         <td class="font-size-sm">{{$user->email}}</td>
                         <td class="font-size-sm">{{$user->default_password}}</td>
                         <td>
-                            <span class="badge badge-primary">{{$user->brgy}}</span>
+                            {{$user->brgy}}
                         </td>
                         <td class="text-center d-flex align-content-center">
                             @livewire('approve.approve', ['user' => $user], key($user->id))
                             @livewire('user.user', ['user' => $user], key($user->id))
-                            
+
                         </td>
                     </tr>
                     @empty

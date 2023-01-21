@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('request_qoutations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('qoutation_no');
             $table->date('date');

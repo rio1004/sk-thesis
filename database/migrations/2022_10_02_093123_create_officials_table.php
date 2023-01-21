@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('officials', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
+
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');

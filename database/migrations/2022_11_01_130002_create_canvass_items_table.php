@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('canvass_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
+
             $table->integer('qty');
             $table->foreignId('canvass_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('item');

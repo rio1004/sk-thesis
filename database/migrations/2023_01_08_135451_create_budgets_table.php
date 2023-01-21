@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('budgets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->default(1);
+
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->integer('fy_year');
             $table->double('remaining_budget')->default(0);
