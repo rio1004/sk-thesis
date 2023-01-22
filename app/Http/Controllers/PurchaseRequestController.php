@@ -38,7 +38,7 @@ class PurchaseRequestController extends Controller
         }
         else{
             $purchaseRequests = PurchaseRequest::whereYear('pr_date', Carbon::now()->year)
-            ->whereMonth('pr_date', Carbon::now()->month)->get();
+            ->get();
             return view('pages.PurchaseRequest.index', compact('purchaseRequests'));
         }
         // Return the filtered requests

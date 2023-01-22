@@ -38,7 +38,7 @@ class Manage extends Component
     }
     public function releaseConfirmation($id)
     {
-        $this->dispatchBrowserEvent('swal:confirm-approve', [
+        $this->dispatchBrowserEvent('swal:confirm-approved', [
             'id' => $id,
             'message' => 'Are you sure?',
             'text' => 'You are about to APPROVED this Purchase Request',
@@ -53,7 +53,7 @@ class Manage extends Component
                 'admin_approved' => 1
             ]);
         }
-        return redirect()->to('manage/purchase_request');
+        return redirect()->to('manage/purchase-request');
     }
     public function disapprovedConfirm($id)
     {
@@ -72,7 +72,7 @@ class Manage extends Component
                 'admin_approved' => 2
             ]);
         }
-        return redirect()->to('manage/purchase_request');
+        return redirect()->to('manage/purchase-request');
     }
     public function render()
     {

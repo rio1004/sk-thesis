@@ -7,6 +7,7 @@ use App\Models\Budget;
 use App\Models\PurchaseRequest;
 use App\Models\User;
 use App\Services\Constant;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class AdminDashboard extends Component
@@ -41,7 +42,8 @@ class AdminDashboard extends Component
     public function render()
     {
         $brgys = Constant::getBarangays();
-        $announcements = AdminAnnouncement::get();
+        $announcements = AdminAnnouncement::whereYear('when', Carbon::now()->year)
+        ->whereMonth('when', Carbon::now()->month)->get();;
         return view('livewire.admin-dashboard', compact('brgys', 'announcements'));
     }
 }

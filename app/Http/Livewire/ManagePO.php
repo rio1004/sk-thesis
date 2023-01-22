@@ -36,7 +36,7 @@ class ManagePO extends Component
     }
     public function releaseConfirmation($id)
     {
-        $this->dispatchBrowserEvent('swal:confirm-approve', [
+        $this->dispatchBrowserEvent('swal:confirm-approved', [
             'id' => $id,
             'message' => 'Are you sure?',
             'text' => 'You are about to APPROVED this Purchase Order',

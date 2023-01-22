@@ -224,7 +224,7 @@
                     denyButtonText: `Cancel`
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.livewire.emit('approved', event.detail.id)
+                        window.livewire.emit('send', event.detail.id)
                         Swal.fire({
                             position: 'top-center',
                             icon: 'success',
@@ -290,6 +290,28 @@
                             position: 'top-center',
                             icon: 'success',
                             title: 'Successfully Disapproved',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    }
+                });
+            });
+            window.addEventListener('swal:confirm-approved', event => {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'question',
+                    title: event.detail.title,
+                    text: event.detail.text,
+                    showCancelButton: true,
+                    confirmButtonText: `Yes`,
+                    denyButtonText: `Cancel`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.livewire.emit('approved', event.detail.id)
+                        Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: 'Successfully Approved',
                             showConfirmButton: false,
                             timer: 1000
                         })

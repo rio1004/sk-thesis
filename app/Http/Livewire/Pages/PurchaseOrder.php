@@ -36,7 +36,7 @@ class PurchaseOrder extends Component
     }
     public function approvedConfirmation()
     {
-        $this->dispatchBrowserEvent('swal:confirm-approve', [
+        $this->dispatchBrowserEvent('swal:confirm-approved', [
             'id' => $this->purchaseOrder->id,
             'message' => 'Are you sure?',
             'text' => 'You are about to APPROVED this Purchase Order',

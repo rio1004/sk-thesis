@@ -11,13 +11,47 @@
 
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="__('Name')" />
+                <x-input-label for="name" :value="__('First Name')" />
 
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
 
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
             </div>
+            <div>
+                <x-input-label for="name" :value="__('Middle Name')" />
 
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="middle_name" :value="old('middle_name')" required autofocus />
+
+                <x-input-error :messages="$errors->get('middle_name')" class="mt-2" />
+            </div>
+            <div>
+                <x-input-label for="name" :value="__('Last Name')" />
+
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus />
+
+                <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+            </div>
+            <div>
+                <x-input-label for="name" :value="__('Age')" />
+
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="age" :value="old('age')" required autofocus />
+
+                <x-input-error :messages="$errors->get('age')" class="mt-2" />
+            </div>
+            <div>
+                <x-input-label for="name" :value="__('Gender')" />
+
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="gender" :value="old('gender')" required autofocus />
+
+                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+            </div>
+            <div>
+                <x-input-label for="name" :value="__('Brgy')" />
+
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="brgy" :value="old('brgy')" required autofocus />
+
+                <x-input-error :messages="$errors->get('brgy')" class="mt-2" />
+            </div>
             <!-- Email Address -->
             <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" />

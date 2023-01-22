@@ -20,7 +20,6 @@
                         <th>Qoutation No.</th>
                         <th>Qoutation Date</th>
                         <th>Supplier</th>
-                        <th>Procurement Officer</th>
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                 </thead>
@@ -35,9 +34,6 @@
                         </td>
                         <td class="font-w600 font-size-sm">
                            {{$qoutation->supplier->supplier_name}}
-                        </td>
-                        <td class="font-w600 font-size-sm">
-                            Php. {{ number_format($qoutation->total_amount, 2) }}
                         </td>
                         <td class="text-center">
                             @livewire('pages.request-qoutation', ['qoutation' => $qoutation], key($qoutation->id))

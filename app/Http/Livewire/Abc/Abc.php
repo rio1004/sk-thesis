@@ -14,7 +14,7 @@ class Abc extends Component
 
     public function deleteConfirm(){
         $this->dispatchBrowserEvent('swal:confirm', [
-            'id' => $this->official->id,
+            'id' => $this->abc->id,
             'message' => 'Are you sure?'
         ]);
     }

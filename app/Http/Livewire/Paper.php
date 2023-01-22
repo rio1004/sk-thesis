@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\AdminAnnouncement;
 use App\Models\Announcement;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Paper extends Component
@@ -32,8 +33,10 @@ class Paper extends Component
 
     public function render()
     {
-        $announcements = Announcement::get();
-        $brgyAnnouncements = AdminAnnouncement::get();
+        $announcements = Announcement::whereYear('when', Carbon::now()->year)
+        ->whereMonth('when', Carbon::now()->month)->get();
+        $brgyAnnouncements = AdminAnnouncement::whereYear('when', Carbon::now()->year)
+        ->whereMonth('when', Carbon::now()->month)->get();
         return view('livewire.paper', compact('announcements', 'brgyAnnouncements'));
     }
 }
