@@ -44,7 +44,8 @@ class PurchaseRequestController extends Controller
         // Return the filtered requests
     }
     public function clear(){
-        $this->index();
+        $purchaseRequests = PurchaseRequest::get();
+        return view('pages.PurchaseRequest.index', compact('purchaseRequests'));
     }
     public function search(Request $req){
         $purchaseRequests =PurchaseRequest::where('pr_no', 'like' ,  "%{$req->searchTerm}%")?->get();

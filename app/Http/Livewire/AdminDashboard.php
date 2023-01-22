@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\AdminAnnouncement;
 use App\Models\Budget;
 use App\Models\PurchaseRequest;
 use App\Models\User;
@@ -18,7 +19,7 @@ class AdminDashboard extends Component
     public $pos;
     public $dvs;
     public $bgt;
-
+    public $announce_id;
     public function updatedselectedBrgy($brgy){
         $this->filteredBrgy = User::where('brgy', $brgy)->first();
         $this->prs = $this->filteredBrgy?->purchase_requests->count();
@@ -26,11 +27,21 @@ class AdminDashboard extends Component
         $this->dvs = $this->filteredBrgy?->disbursements->count();
         $this->bgt = Budget::where('user_id', $this->filteredBrgy?->id)->first();
     }
-
+    public function showAnnounce($id){
+        $announce = AdminAnnouncement::find($id);
+        $this->dispatchBrowserEvent('showAnnounce', [
+            'title' => $announce->title,
+            'what' =>  '<b>What:</b> '.$announce->what,
+            'when' =>  '<b>When:</b> '.$announce->when,
+            'where' =>  '<b>Where:</b> '.$announce->where,
+            'details' =>  '<b>Details:</b>'.$announce->details,
+        ]);
+    }
 
     public function render()
     {
         $brgys = Constant::getBarangays();
-        return view('livewire.admin-dashboard', compact('brgys'));
+        $announcements = AdminAnnouncement::get();
+        return view('livewire.admin-dashboard', compact('brgys', 'announcements'));
     }
 }

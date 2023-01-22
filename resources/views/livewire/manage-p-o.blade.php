@@ -59,12 +59,14 @@
                                 {{$pr->user->brgy}}
                             </td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Approved" wire:click="releaseConfirmation({{$pr->id}})" wire:loading.attr="disabled">
-                                    <i class="fa fa-fw fa fa-check-double"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="DisApproved" wire:click="disapprovedConfirm({{$pr->id}})" wire:loading.attr="disabled">
-                                    <i class="fa fa-fw fa fa-check-double"></i>
-                                </button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Approved" wire:click="releaseConfirmation({{$pr->id}})" wire:loading.attr="disabled">
+                                        <i class="fa fa-fw fa fa-check-double"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Diapproved" wire:click="disapprovedConfirm({{$pr->id}})" wire:loading.attr="disabled">
+                                        <i class="fa fa-fw fa fa-handshake-slash"></i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                         @empty

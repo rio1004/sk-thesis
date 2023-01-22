@@ -101,8 +101,13 @@
                     <span class="nav-main-link-name">Purchase Order</span>
                 </a>
             </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link" href="{{route('admin-announcement.index')}}">
+                    <i class="nav-main-link-icon si si-wallet"></i>
+                    <span class="nav-main-link-name">Admin Announcment</span>
+                </a>
+            </li>
             @endrole
-
         </ul>
     </div>
     <!-- END Side Navigation -->

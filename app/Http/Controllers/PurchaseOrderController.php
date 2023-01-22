@@ -6,6 +6,7 @@ use App\Http\Requests\PurchaseOrder\StoreRequest;
 use App\Http\Requests\PurchaseOrder\UpdateRequest;
 use App\Models\PurchaseOrder;
 use App\Models\Supplier;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -32,6 +33,7 @@ class PurchaseOrderController extends Controller
         $suppliers = Supplier::get();
         return view('pages.PurchaseOrder.create', compact('suppliers'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -79,6 +81,33 @@ class PurchaseOrderController extends Controller
 
     }
 
+    public function filterBy(Request $req)
+    {
+        if($req->filterBy == 'week'){
+            $week_start = Carbon::now()->startOfWeek();
+            $week_end = Carbon::now()->endOfWeek();
+            $purchaseOrders = PurchaseOrder::whereBetween('po_date', [$week_start, $week_end])->get();
+            return view('pages.PurchaseOrder.index', compact('purchaseOrders'));
+        }
+        elseif($req->filterBy == 'month'){
+            $purchaseOrders = PurchaseOrder::whereYear('po_date', Carbon::now()->year)
+            ->whereMonth('po_date', Carbon::now()->month)->get();
+            return view('pages.PurchaseOrder.index', compact('purchaseOrders'));
+        }
+        else{
+            $purchaseOrders = PurchaseOrder::whereYear('po_date', Carbon::now()->year)
+            ->whereMonth('po_date', Carbon::now()->month)->get();
+            return view('pages.PurchaseOrder.index', compact('purchaseOrders'));
+        }
+        // Return the filtered requests
+    }
+    public function clear(){
+        $this->index();
+    }
+    public function search(Request $req){
+        $purchaseOrders =PurchaseOrder::where('po_no', 'like' ,  "%{$req->searchTerm}%")?->get();
+        return view('pages.PurchaseOrder.index', compact('purchaseOrders'));
+    }
     /**
      * Display the specified resource.
      *

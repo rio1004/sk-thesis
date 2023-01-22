@@ -3,7 +3,7 @@
 Announcement
 @endsection
 @section('content')
-<form action="{{route('announcement.store')}}" method="POST">
+<form action="{{route('admin-announcement.store')}}" method="POST">
     @csrf
     <x-alert></x-alert>
     <x-error></x-error>
@@ -11,7 +11,7 @@ Announcement
         <div class="block-header block-header-default">
             <h3 class="block-title">Create an Announcement</h3>
             <div class="block-header">
-                <a class="btn btn-sm btn-alt-success" href="{{route('announcement.index')}}">
+                <a class="btn btn-sm btn-alt-success" href="{{route('admin-announcement.index')}}">
                     Cancel
                 </a>
             </div>
@@ -29,7 +29,7 @@ Announcement
                     </div>
                     <div class="form-group">
                         <label for="block-form1-username">When</label>
-                        <input type="date" class="form-control " id="block-form1-username" name="when" value="{{old('ntp_effectivity_date')}}">
+                        <input type="date" class="form-control " id="block-form1-username" name="when" value="{{old('when')}}">
                     </div>
                     <div class="form-group">
                         <label for="block-form1-username">Where</label>

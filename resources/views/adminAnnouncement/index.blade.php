@@ -7,7 +7,7 @@ Announcement
     <div class="block-header">
         <h3 class="block-title">Announcement</h3>
         <div class="block-options">
-            <a type="button" class="btn btn-sm btn-alt-primary" href="{{route('announcement.create')}}">
+            <a type="button" class="btn btn-sm btn-alt-primary" href="{{route('admin-announcement.create')}}">
                 <i class="fa fa-user-plus mr-1"></i> Add Announcement
             </a>
         </div>
@@ -22,7 +22,7 @@ Announcement
                         <th>Where</th>
                         <th>When</th>
                         <th>Details</th>
-                        <th>Level of Importance</th>
+                        <th>level of Importance</th>
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                 </thead>
@@ -54,7 +54,7 @@ Announcement
                             @endif
                         </td>
                         <td class="text-center">
-                            @livewire('pages.announcement', ['announcement' => $announcement], key($announcement->id))
+                            @livewire('admin-announce', ['announcement' => $announcement], key($announcement->id))
                         </td>
                     </tr>
                     @empty

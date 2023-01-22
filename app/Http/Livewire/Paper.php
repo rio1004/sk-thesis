@@ -7,31 +7,21 @@ use Livewire\Component;
 
 class Paper extends Component
 {
-    public $paper;
-    public $title;
-    public $when;
-    public $what;
-    public $details;
-    public $where;
 
-    public function show($id){
+    public function showAnnounce($id){
+        $announce = Announcement::find($id);
+        $this->dispatchBrowserEvent('showAnnounce', [
+            'title' => $announce->title,
+            'what' =>  '<b>What:</b> '.$announce->what,
+            'when' =>  '<b>When:</b> '.$announce->when,
+            'where' =>  '<b>Where:</b> '.$announce->where,
+            'details' =>  '<b>Details:</b>'.$announce->details,
+        ]);
+    }
 
-        $announcement = Announcement::find($id);
-        $this->title = $announcement->title;
-        $this->when = $announcement->when;
-        $this->what = $announcement->what;
-        $this->details = $announcement->details;
-        $this->where = $announcement->where;
-    }
-    public function close(){
-        $this->title = '';
-        $this->when ='';
-        $this->what ='';
-        $this->details = '';
-        $this->where ='';
-    }
     public function render()
     {
-        return view('livewire.paper');
+        $announcements = Announcement::get();
+        return view('livewire.paper', compact('announcements'));
     }
 }

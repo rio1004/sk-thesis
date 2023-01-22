@@ -265,6 +265,15 @@
                     showConfirmButton: true,
                 })
             });
+            window.addEventListener('showAnnounce', event => {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'info',
+                    title: event.detail.title,
+                    html:  event.detail.what + "<br>" + event.detail.where + "<br>" +  event.detail.when + "<br>" + event.detail.details,
+                    showConfirmButton: true,
+                })
+            });
             window.addEventListener('swal:confirm-disapproved', event => {
                 Swal.fire({
                     position: 'top-center',

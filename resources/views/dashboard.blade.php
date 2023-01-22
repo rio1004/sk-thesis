@@ -40,18 +40,7 @@
         </a>
     </div>
 </div>
-<div class="block block-rounded">
-    <div class="block-header block-header-default">
-        <h2 class="block-title">Announcements</h2>
-    </div>
-    <div class="row justify-content-center py-sm-3 py-md-5" >
-        @forelse ( $announcements as $paper )
-            @livewire('paper', ['paper' => $paper], key($paper->id))
-        @empty
-        @endforelse
-
-    </div>
-</div>
+@livewire('paper')
 @endrole
 @role('super-admin')
 @livewire('admin-dashboard');

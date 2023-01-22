@@ -41,6 +41,15 @@ Announcement
                         <textarea name="details" id="" cols="30" rows="10" class="form-control">{{$announcement->details}}</textarea>
                     </div>
                     <div class="form-group">
+                        <label for="example-select">Approved Project:</label>
+                        <select class="form-control" id="example-select" name="status">
+                            <option value="">Please select</option>
+                            <option value="2" @selected(2 == $announcement->status)>Very Important</option>
+                            <option value="1" @selected(1 == $announcement->status)>Fairly Important</option>
+                            <option value="0" @selected(0 == $announcement->status)>Important</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-sm btn-primary">
                             Submit
                         </button>

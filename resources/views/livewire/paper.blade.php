@@ -1,48 +1,79 @@
 <div>
-    <div wire:ignore.self class="modal" id="modal-block-small" tabindex="-1" role="dialog" aria-labelledby="modal-block-small" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="block block-rounded block-themed block-transparent mb-0">
-                    <div class="block-header bg-primary-dark">
-                        <h3 class="block-title">Announcement</h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                <i class="fa fa-fw fa-times"></i>
-                            </button>
-                        </div>
+    <h2 class="content-heading">Announcement</h2>
+    <div class="row justify-content-center py-sm-3 py-md-5" >
+        @forelse ($announcements as $announcement)
+        <div class="col-md-6 col-xl-3">
+            <!-- Bottom Right Success -->
+            <div class="block block-rounded">
+                @if ($announcement->status ==1)
+                <div class="block-content block-content-full ribbon ribbon-warning" wire:click="showAnnounce({{$announcement->id}})">
+                    <div class="ribbon-box">
+                        Fairly Important
                     </div>
-                    <div class="block-content font-size-sm">
-                        <div class="row mx-3">
-                            <h5>Title: </h5><p  class="mx-2">{{$title}}</p>
-                        </div>
-                        <div class="row mx-3">
-                            <h5>When: </h5><p  class="mx-2">{{$when}}</p>
-                        </div>
-                        <div class="row mx-3">
-                            <h5>Where: </h5><p  class="mx-2">{{$where}}</p>
-                        </div>
-                        <div class="row mx-3">
-                            <h5>What: </h5><p class="mx-2">{{$what}}</p>
-                        </div>
-                        <div class="row mx-3">
-                            <h5 class="">Details: </h5><p class="mx-2">{{$details}}</p>
-                        </div>
+                    <div class="text-center py-4">
+                        <p>
+                            <i class="far fa-3x fa-bell text-gray"></i>
+                        </p>
+                        <h4 class="mb-0">{{$announcement->title}}</h4>
+                        <p class="text-center">
+                            Please Click for Full Details
+                        </p>
                     </div>
-                    <div class="block-content block-content-full text-right border-top">
-                        <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal" wire:click='close()'>Close</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" wire:click='close()'>Ok</button>
+                </div>
+                @elseif ($announcement->status ==2)
+                <div class="block-content block-content-full ribbon ribbon-danger" wire:click="showAnnounce({{$announcement->id}})">
+                    <div class="ribbon-box">
+                        Very Important
+                    </div>
+                    <div class="text-center py-4">
+                        <p>
+                            <i class="far fa-3x fa-bell text-gray"></i>
+                        </p>
+                        <h4 class="mb-0">{{$announcement->title}}</h4>
+                        <p class="text-center">
+                            Please Click for Full Details
+                        </p>
+                    </div>
+                </div>
+                @else
+                <div class="block-content block-content-full ribbon ribbon-success" wire:click="showAnnounce({{$announcement->id}})">
+                    <div class="ribbon-box">
+                        Important
+                    </div>
+                    <div class="text-center py-4">
+                        <p>
+                            <i class="far fa-3x fa-bell text-gray"></i>
+                        </p>
+                        <h4 class="mb-0">{{$announcement->title}}</h4>
+                        <p class="text-center">
+                            Please Click for Full Details
+                        </p>
+                    </div>
+                </div>
+                @endif
+
+            </div>
+            <!-- END Bottom Right Success -->
+        </div>
+        @empty
+        <div class="col-md-12 col-xl-12">
+            <!-- Bottom Right Success -->
+            <div class="block block-rounded">
+                <div class="block-content block-content-full ribbon ribbon-danger">
+                    <div class="ribbon-box">
+                        N/A
+                    </div>
+                    <div class="text-center py-4">
+                        <p>
+                            <i class="far fa-3x fa-bell-slash text-gray"></i>
+                        </p>
+                        <h4 class="mb-0">No Announcement Available</h4>
                     </div>
                 </div>
             </div>
+            <!-- END Bottom Right Success -->
         </div>
+        @endforelse
     </div>
-    <div class="paper m-3" data-toggle="modal" data-target="#modal-block-small" wire:click='show({{$paper->id}})' wire:key="{{ $paper->id }}">
-        <input type="hidden" value="{{$paper->id}}">
-        <div class="pin">
-            <div class="shadow"></div>
-            <div class="metal"></div>
-            <div class="bottom-circle"></div>
-        </div>
-        <p>{{$paper->title}}</p>
-    </div>
+
 </div>

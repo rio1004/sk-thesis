@@ -13,6 +13,39 @@
         </div>
     </div>
     <div class="block-content">
+        <div class="row  py-2">
+            <form action="{{route('purchase-order.filter')}}" method="POST">
+                @csrf
+            <div class="col">
+                <div class="form-inline">
+                    <select name="filterBy" class="form-control" required>
+                        <option value="">-- Please select --</option>
+                        <option value="week">Weekly</option>
+                        <option value="month">Monthly</option>
+                        <option value="year">Yearly</option>
+                    </select>
+                    <button type="submit" class="btn btn-sm btn-alt-primary mx-2">
+                        <i class="fa fa-filter"></i> Filter
+                    </button>
+                </div>
+            </div>
+            </form>
+            <div class="col">
+                <div class="form-inline">
+                    <form action="{{route('purchase-order.search')}}" method="POST">
+                        @csrf
+                        <input type="text" name="searchTerm" class="form-control" placeholder="Please search by PO Number">
+                        <button type="submit" class="btn btn-sm btn-alt-success mx-2">
+                            <i class="fa fa-search"></i> Search
+                        </button>
+                    </form>
+                    <a href="{{route('purchase-order.clear')}}" class="btn btn-sm btn-alt-info mx-2">
+                        Clear
+                    </a>
+                </div>
+            </div>
+
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered table-striped table-vcenter">
                 <thead>
