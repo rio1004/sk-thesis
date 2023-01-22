@@ -74,7 +74,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('purchase-request', PurchaseRequestController::class);
     Route::resource('purchase-order', PurchaseOrderController::class);
     Route::resource('qoutation', RequestQoutationController::class);
-    Route::resource('abstract-canvass', CanvassController::class);
+    Route::resource('canvass', CanvassController::class);
     Route::resource('abc', AbcController::class);
     Route::resource('notice-of-award', NoaController::class);
     Route::resource('notice-to-proceed', NtpController::class);

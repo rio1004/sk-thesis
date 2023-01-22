@@ -3,7 +3,7 @@
     Purchase Request
 @endsection
 @section('content')
-<form action="{{route('abstract-canvass.store')}}" method="POST">
+<form action="{{route('canvass.store')}}" method="POST">
     @csrf
     <x-alert></x-alert>
     <x-error></x-error>
@@ -11,7 +11,7 @@
         <div class="block-header block-header-default">
             <h3 class="block-title">Create Purchase Request</h3>
             <div class="block-header">
-                <a class="btn btn-sm btn-alt-success" href="{{route('abstract-canvass.index')}}">
+                <a class="btn btn-sm btn-alt-success" href="{{route('canvass.index')}}">
                     Cancel
                 </a>
             </div>

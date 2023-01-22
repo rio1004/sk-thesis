@@ -7,7 +7,7 @@
     <div class="block-header">
         <h3 class="block-title">List of Canvasses</h3>
         <div class="block-options">
-            <a type="button" class="btn btn-sm btn-alt-primary" href="{{route('abstract-canvass.create')}}">
+            <a type="button" class="btn btn-sm btn-alt-primary" href="{{route('canvass.create')}}">
                 <i class="fa fa-user-plus mr-1"></i> Add Abstract of Canvass
             </a>
         </div>

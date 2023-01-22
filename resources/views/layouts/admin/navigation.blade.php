@@ -31,7 +31,7 @@
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{route('abstract-canvass.index')}}">
+                        <a class="nav-main-link" href="{{route('canvass.index')}}">
                             <span class="nav-main-link-name">Abstract of Canvass</span>
                         </a>
                     </li>
@@ -40,7 +40,7 @@
                             <span class="nav-main-link-name">Approved Budget for contract</span>
                         </a>
                     </li>
-                    <li class="nav-main-item">
+                    {{-- <li class="nav-main-item">
                         <a class="nav-main-link" href="{{route('notice-of-award.index')}}">
                             <span class="nav-main-link-name">Notice of Award</span>
                         </a>
@@ -49,7 +49,7 @@
                         <a class="nav-main-link" href="{{route('notice-to-proceed.index')}}">
                             <span class="nav-main-link-name">Notice to Proceed</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-main-item">
                         <a class="nav-main-link" href="{{route('dibursement.index')}}">
                             <span class="nav-main-link-name">Disbursement Voucher</span>
