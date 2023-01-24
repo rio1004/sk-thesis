@@ -16,18 +16,18 @@ return new class extends Migration
         Schema::create('abc_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admin_id')->default(1);
-     $table->integer('item_no')->nullable();
-     $table->string('qty');
-     $table->string('tax')->default(0);
-     $table->string('insurance')->default(0);
-     $table->string('indirect_cost')->default(0);
-     $table->string('market_price')->default(0);
-     $table->string('valuation_adjustment')->default(0);
-     $table->string('total_cost')->default(0);
-     $table->string('unit_cost')->default(0);
-     $table->string('item');
-     $table->string('unit');
-     $table->foreignId('abc_id')->nullable()->references('id')->on('abcs')->cascadeOnDelete();
+            $table->integer('item_no')->nullable();
+            $table->string('qty');
+            $table->string('tax')->nullable()->default(0);
+            $table->string('insurance')->nullable()->default(0);
+            $table->string('indirect_cost')->nullable()->default(0);
+            $table->string('market_price')->nullable()->default(0);
+            $table->string('valuation_adjustment')->nullable()->default(0);
+            $table->string('total_cost')->nullable()->default(0);
+            $table->string('unit_cost')->nullable()->default(0);
+            $table->string('item');
+            $table->string('unit');
+            $table->foreignId('abc_id')->nullable()->references('id')->on('abcs')->cascadeOnDelete();
             $table->timestamps();
         });
     }

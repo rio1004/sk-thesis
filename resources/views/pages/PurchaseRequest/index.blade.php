@@ -72,7 +72,7 @@
                            {{$purchaseRequest->requestedBy->full_name}}
                         </td>
                         <td class="font-w600 font-size-sm">
-                            Php. {{ number_format($purchaseRequest->estimated_amount, 2) }}
+                            Php. {{ number_format($purchaseRequest->total_amount, 2) }}
                         </td>
                         <td class="font-w600 font-size-sm">
                             @if ($purchaseRequest->admin_approved ==1)

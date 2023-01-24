@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{ $disbursement->dv_no }}</td>
                         <td>{{ $disbursement->dv_date->format('M. d, Y') }}</td>
-                        <td>{{ $disbursement->supplier->supplier_name }}</td>
+                        <td>{{ $disbursement?->supplier?->supplier_name }}</td>
                         <td>{{ $disbursement->check_no }}</td>
                         <td>Php. {{ number_format($disbursement->total_amount, 2) }}</td>
                         <td>{{ $disbursement->status }}</td>
