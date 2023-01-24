@@ -38,15 +38,15 @@ class UpdateRequest extends FormRequest
             'qtys' => ['required', 'array'],
             'qtys.*' => ['required'],
             'prices' => ['nullable', 'array'],
-            'prices.*' => ['required'],
+            'prices.*' => ['nullable'],
             'taxes' => ['nullable', 'array'],
-            'taxes.*' => ['required'],
+            'taxes.*' => ['nullable'],
             'insurances' => ['nullable', 'array'],
-            'insurances.*' => ['required'],
+            'insurances.*' => ['nullable'],
             'indirects_costs' => ['nullable', 'array'],
-            'indirects_costs.*' => ['required'],
+            'indirects_costs.*' => ['nullable'],
             'adjustments' => ['nullable', 'array'],
-            'adjustments.*' => ['required'],
+            'adjustments.*' => ['nullable'],
         ];
     }
 }

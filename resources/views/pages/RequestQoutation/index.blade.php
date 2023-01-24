@@ -33,7 +33,7 @@
                             {{$qoutation->date}}
                         </td>
                         <td class="font-w600 font-size-sm">
-                           {{$qoutation->supplier->supplier_name}}
+                           {{$qoutation?->supplier?->supplier_name}}
                         </td>
                         <td class="text-center">
                             @livewire('pages.request-qoutation', ['qoutation' => $qoutation], key($qoutation->id))
