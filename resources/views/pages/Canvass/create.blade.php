@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('page-name')
-    Purchase Request
+    Abstract of Canvass
 @endsection
 @section('content')
 <form action="{{route('canvass.store')}}" method="POST">
@@ -9,7 +9,7 @@
     <x-error></x-error>
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Create Purchase Request</h3>
+            <h3 class="block-title">Create Abstract of Canvass</h3>
             <div class="block-header">
                 <a class="btn btn-sm btn-alt-success" href="{{route('canvass.index')}}">
                     Cancel

@@ -85,9 +85,9 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('purchase-request/filter', [PurchaseRequestController::class, 'filterBy'])->name('purchase-request.filter');
     Route::put('purchase-request/', [PurchaseRequestController::class, 'clear'])->name('purchase-request.clear');
     Route::post('purchase-request/search', [PurchaseRequestController::class, 'search'])->name('purchase-request.search');
-    Route::post('purchase-order/filter', [PurchaseRequestController::class, 'filterBy'])->name('purchase-order.filter');
-    Route::put('purchase-order/', [PurchaseRequestController::class, 'clear'])->name('purchase-order.clear');
-    Route::post('purchase-order/search', [PurchaseRequestController::class, 'search'])->name('purchase-order.search');
+    Route::post('purchase-order/filter', [PurchaseOrderController::class, 'filterBy'])->name('purchase-order.filter');
+    Route::put('purchase-order/', [PurchaseOrderController::class, 'clear'])->name('purchase-order.clear');
+    Route::post('purchase-order/search', [PurchaseOrderController::class, 'search'])->name('purchase-order.search');
     Route::put('/update-my-password/{id}', [ProfileController::class, 'changePassword'])->name('update-my-password');
 });
 Route::resource('admin-announcement', AdminAnnouncementController::class);
