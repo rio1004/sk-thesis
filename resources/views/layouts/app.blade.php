@@ -179,9 +179,14 @@
                     @yield('content')
                 </div>
             </main>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            @yield('scripts')
             @include('layouts.admin.footer')
         </div>
+       
         @livewireScripts
+        
         <script src="{{asset('assets/js/oneui.core.min.js')}}"></script>
         <script src="{{asset('assets/js/oneui.app.min.js')}}"></script>
         <script src="{{asset('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js')}}"></script>

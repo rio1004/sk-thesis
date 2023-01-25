@@ -131,8 +131,10 @@ class RequestQoutationController extends Controller
      * @param  \App\Models\RequestQoutation  $requestQoutation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequestQoutation $requestQoutation)
+    public function delete($id)
     {
-        //
+        $delete = RequestQoutation::findOrFail($id);
+        $delete->delete();
+        return response()->json(['status'=> 'Successfully Deleted.']);
     }
 }

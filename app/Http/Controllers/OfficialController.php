@@ -94,8 +94,10 @@ class OfficialController extends Controller
      * @param  \App\Models\Official  $official
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Official $official)
+    public function delete($id)
     {
-        //
+        $delete = Official::findOrFail($id);
+        $delete->delete();
+        return response()->json(['status'=> 'Successfully Deleted.']);
     }
 }
