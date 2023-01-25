@@ -52,7 +52,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="example-select">Other Position</label>
                         <select class="form-control" id="example-select" name="other_position">
                             <option value="">Please select</option>
@@ -60,6 +60,10 @@
                                 <option value="{{$pos}}">{{$pos}}</option>
                             @endforeach
                         </select>
+                    </div> --}}
+                    <div class="form-group">
+                        <label for="block-form1-username">Other Position</label>
+                        <input type="text" class="form-control  " id="block-form1-username" name="other_position" placeholder="Other Position..">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-sm btn-primary">

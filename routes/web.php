@@ -57,6 +57,7 @@ Route::group(['middleware' => ['role:super-admin']], function () {
             Route::get('/', 'index')->name('user.index');
             Route::get('/create', 'create')->name('user.create');
             Route::post('/store', 'store')->name('user.store');
+            Route::delete('/delete/{id}' , 'delete')->name('delete-user');
         });
     });
     Route::controller(Manage::class)->group(function(){
@@ -89,6 +90,14 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::put('purchase-order/', [PurchaseOrderController::class, 'clear'])->name('purchase-order.clear');
     Route::post('purchase-order/search', [PurchaseOrderController::class, 'search'])->name('purchase-order.search');
     Route::put('/update-my-password/{id}', [ProfileController::class, 'changePassword'])->name('update-my-password');
+    Route::delete('/delete-disbursment/{id}' , [DisbursementController::class , 'delete']);
+    Route::delete('/delete-abc/{id}' , [AbcController::class , 'delete']);
+    Route::delete('/delete-abstract/{id}' , [CanvassController::class , 'delete']);
+    Route::delete('/delete-quatation/{id}' , [RequestQoutationController::class , 'delete']);
+    Route::delete('/delete-supplier/{id}' , [SupplierController::class , 'delete']);
+    Route::delete('/delete-official/{id}' , [OfficialController::class , 'delete']);
+
+    
 });
 Route::resource('admin-announcement', AdminAnnouncementController::class);
 

@@ -196,8 +196,10 @@ class DisbursementController extends Controller
      * @param  \App\Models\Disbursement  $dibursement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Disbursement $dibursement)
+    public function delete($id)
     {
-        //
+        $delete = Disbursement::findOrFail($id);
+        $delete->delete();
+        return response()->json(['status'=> 'Successfully Deleted.']);
     }
 }

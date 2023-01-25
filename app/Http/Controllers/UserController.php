@@ -38,4 +38,11 @@ class UserController extends Controller
 
         return redirect()->back()->with('success-message', 'User created Successfully');
     }
+
+    public function delete($id)
+    {
+        $accountDelete = User::findOrFail($id);
+        $accountDelete->delete();
+        return response()->json(['status'=> 'Successfully Deleted.']);
+    }
 }

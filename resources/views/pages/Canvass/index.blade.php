@@ -24,11 +24,17 @@
                 <tbody>
                     @forelse ($canvasses as $canvass)
                     <tr>
+                         <input type="hidden" class="this_id" value="{{$canvass->id}}">
                         <td class="font-w600 font-size-sm">
                           {{$canvass->project_name}}
                         </td>
                         <td class="text-center">
-                            @livewire('pages.canvass', ['canvass' => $canvass], key($canvass->id))
+                            <div class="btn-group">
+                                @livewire('pages.canvass', ['canvass' => $canvass], key($canvass->id))
+                                <button type="button" class="btn btn-sm btn-alt-danger serviceDelete" data-toggle="tooltip" title="Delete">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     @empty
@@ -40,3 +46,51 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+<script>
+  $(document).ready(function(){
+
+    $.ajaxSetup({
+      headers:{
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $('.serviceDelete').click(function (e){
+      e.preventDefault();
+
+      var delete_this = $(this).closest("tr").find('.this_id').val();
+      Swal.fire({
+              title: 'Are you sure?',
+              text: 'You cannot restore this once deleted!',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                var data ={
+                  "_token": $('input[name=_token]').val(),
+                  "id": delete_this,
+                };
+                $.ajax({
+                  type: "DELETE",
+                  url: '/delete-abstract/'+delete_this,
+                  data: data,
+                  success: function(response){
+                     Swal.fire(
+                      'Removed!',
+                      'Successfully Deleted.',
+                      'success',
+                      response.status,
+                    ).then((result) => {
+                      location.reload();
+                    });
+                    }
+                });
+              }
+            })
+          })
+        });
+</script>
+@endsection()

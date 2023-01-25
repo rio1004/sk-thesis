@@ -28,13 +28,19 @@
                 <tbody>
                     @forelse ($abcs as $abc)
                     <tr>
+                        <input type="hidden" class="this_id" value="{{$abc->id}}">
                         <td>{{ $abc->procurement_title }}</td>
                         <td>{{ $abc->submittedBy->full_name }}</td>
                         <td>{{ $abc->approvedBy->full_name }}</td>
                         <td>{{ $abc->recommendedBy->full_name }}</td>
                         <td>{{ $abc->bidder }}</td>
                         <td class="text-center">
-                            @livewire('abc.abc', ['abc' => $abc], key($abc->id))
+                            <div class="btn-group">
+                                @livewire('abc.abc', ['abc' => $abc], key($abc->id))
+                                <button type="button" class="btn btn-sm btn-alt-danger serviceDelete" data-toggle="tooltip" title="Delete">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     @empty
@@ -46,3 +52,51 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+<script>
+  $(document).ready(function(){
+
+    $.ajaxSetup({
+      headers:{
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $('.serviceDelete').click(function (e){
+      e.preventDefault();
+
+      var delete_this = $(this).closest("tr").find('.this_id').val();
+      Swal.fire({
+              title: 'Are you sure?',
+              text: 'You cannot restore this once deleted!',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                var data ={
+                  "_token": $('input[name=_token]').val(),
+                  "id": delete_this,
+                };
+                $.ajax({
+                  type: "DELETE",
+                  url: '/delete-abc/'+delete_this,
+                  data: data,
+                  success: function(response){
+                     Swal.fire(
+                      'Removed!',
+                      'Successfully Deleted.',
+                      'success',
+                      response.status,
+                    ).then((result) => {
+                      location.reload();
+                    });
+                    }
+                });
+              }
+            })
+          })
+        });
+</script>
+@endsection()

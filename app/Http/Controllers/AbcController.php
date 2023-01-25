@@ -169,8 +169,10 @@ class AbcController extends Controller
      * @param  \App\Models\Abc  $abc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Abc $abc)
+    public function delete($id)
     {
-        //
+        $delete = Abc::findOrFail($id);
+        $delete->delete();
+        return response()->json(['status'=> 'Successfully Deleted.']);
     }
 }

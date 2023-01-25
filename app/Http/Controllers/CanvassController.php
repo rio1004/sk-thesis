@@ -208,8 +208,10 @@ class CanvassController extends Controller
      * @param  \App\Models\Canvass  $canvass
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Canvass $canvass)
+    public function delete($id)
     {
-        //
+        $delete = Canvass::findOrFail($id);
+        $delete->delete();
+        return response()->json(['status'=> 'Successfully Deleted.']);
     }
 }
