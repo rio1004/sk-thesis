@@ -45,5 +45,4 @@
 @role('super-admin')
 @livewire('admin-dashboard');
 @endrole
-
 @endsection

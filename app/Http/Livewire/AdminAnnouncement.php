@@ -12,7 +12,6 @@ class AdminAnnouncement extends Component
     public function render()
     {
         $announcements = ModelsAdminAnnouncement::get();
-
         return view('livewire.admin-announcement', compact('announcments'));
     }
 }

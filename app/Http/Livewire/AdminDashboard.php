@@ -43,7 +43,7 @@ class AdminDashboard extends Component
     {
         $brgys = Constant::getBarangays();
         $announcements = AdminAnnouncement::whereYear('when', Carbon::now()->year)
-        ->whereMonth('when', Carbon::now()->month)->get();;
+        ->whereMonth('when', Carbon::now()->month)->get();
         return view('livewire.admin-dashboard', compact('brgys', 'announcements'));
     }
 }

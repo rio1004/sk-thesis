@@ -29,6 +29,8 @@ class StoreRequest extends FormRequest
             'where'=>['required'],
             'when'=>['required','date'],
             'details'=>['required'],
+            'status' => ['required'],
+
         ];
     }
 }

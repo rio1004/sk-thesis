@@ -11,7 +11,7 @@
         <div class="block-header block-header-default">
             <h3 class="block-title">Notice of Approval</h3>
             <div class="block-header">
-                <a class="btn btn-sm btn-alt-success" href="{{route('purchase-request.index')}}">
+                <a class="btn btn-sm btn-alt-success" href="{{route('notice-of-award.index')}}">
                     Cancel
                 </a>
             </div>
